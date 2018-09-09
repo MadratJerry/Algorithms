@@ -16,3 +16,12 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile 'edu.princeton.cs:algs4:1.0.3'
 }
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+            srcDir 'src/main/java/1_Fundamentals/1_5/Assignment'
+        }
+    }
+}
