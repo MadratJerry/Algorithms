@@ -21,6 +21,7 @@ sourceSets {
     main {
         java {
             srcDir 'src/main/java'
+            srcDir 'src/main/java/1_Fundamentals/1_3/Assignment'
             srcDir 'src/main/java/1_Fundamentals/1_5/Assignment'
         }
     }
