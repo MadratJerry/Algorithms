@@ -17,12 +17,10 @@ dependencies {
     compile 'edu.princeton.cs:algs4:1.0.3'
 }
 
-sourceSets {
-    main {
-        java {
-            srcDir 'src/main/java'
-            srcDir 'src/main/java/1_Fundamentals/1_3/Assignment'
-            srcDir 'src/main/java/1_Fundamentals/1_5/Assignment'
+file('src/main/java').eachDir {
+    it.eachDirRecurse {
+        it.eachDirMatch(~/Assignment/) {
+            sourceSets.main.java.srcDirs += it
         }
     }
 }
