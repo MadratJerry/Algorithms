@@ -1,6 +1,7 @@
 import edu.princeton.cs.algs4.StdDraw;
 
 public class RightTriangle {
+
     public static void main(String[] args) {
         StdDraw.square(.5, .5, .5);
         StdDraw.setPenColor(StdDraw.BLUE);

@@ -1,6 +1,7 @@
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
+
     private final int n;
     private int openCount = 0;
     private boolean[][] grid;

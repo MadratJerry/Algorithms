@@ -3,6 +3,7 @@ import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.StdStats;
 
 public class PercolationStats {
+
     private final int t;
     private final double[] xn;
     private double mean;
