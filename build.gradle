@@ -19,6 +19,7 @@ dependencies {
 
 file('src/main/java').eachDir {
     it.eachDirRecurse {
+        sourceSets.main.java.srcDirs += it
         it.eachDirMatch(~/Assignment/) {
             sourceSets.main.java.srcDirs += it
         }
