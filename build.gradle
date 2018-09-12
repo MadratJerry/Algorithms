@@ -25,3 +25,12 @@ file('src/main/java').eachDir {
         }
     }
 }
+
+file('src/test/java').eachDir {
+    it.eachDirRecurse {
+        sourceSets.test.java.srcDirs += it
+        it.eachDirMatch(~/Assignment/) {
+            sourceSets.test.java.srcDirs += it
+        }
+    }
+}
