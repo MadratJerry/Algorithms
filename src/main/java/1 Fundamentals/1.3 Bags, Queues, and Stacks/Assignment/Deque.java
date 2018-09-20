@@ -2,42 +2,9 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class Deque<Item> implements Iterable<Item> {
-
     private int size;
     private Node<Item> first;
     private Node<Item> last;
-
-    private class Node<Item> {
-        Item value;
-        Node<Item> previous;
-        Node<Item> next;
-    }
-
-    private class DequeIterator<Item> implements Iterator<Item> {
-        Node<Item> current;
-
-        DequeIterator(Node<Item> first) {
-            current = first;
-        }
-
-        @Override
-        public boolean hasNext() {
-            return current != null;
-        }
-
-        @Override
-        public void remove() {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public Item next() {
-            if (!hasNext()) throw new NoSuchElementException();
-            Item value = current.value;
-            current = current.next;
-            return value;
-        }
-    }
 
     public Deque() {
         size = 0;
@@ -90,7 +57,6 @@ public class Deque<Item> implements Iterable<Item> {
         return value;
     }
 
-
     public Item removeLast() {
         if (isEmpty()) throw new NoSuchElementException("Deque is empty.");
 
@@ -107,5 +73,37 @@ public class Deque<Item> implements Iterable<Item> {
     @Override
     public Iterator<Item> iterator() {
         return new DequeIterator<>(first);
+    }
+
+    private class Node<Item> {
+        Item value;
+        Node<Item> previous;
+        Node<Item> next;
+    }
+
+    private class DequeIterator<Item> implements Iterator<Item> {
+        Node<Item> current;
+
+        DequeIterator(Node<Item> first) {
+            current = first;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        @Override
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public Item next() {
+            if (!hasNext()) throw new NoSuchElementException();
+            Item value = current.value;
+            current = current.next;
+            return value;
+        }
     }
 }

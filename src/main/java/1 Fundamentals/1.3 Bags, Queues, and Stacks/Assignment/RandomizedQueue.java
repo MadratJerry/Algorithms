@@ -4,9 +4,12 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class RandomizedQueue<Item> implements Iterable<Item> {
-
     private int size;
     private Item[] array;
+
+    public RandomizedQueue() {
+        array = (Item[]) new Object[2];
+    }
 
     private void resize(int size) {
         Item[] tempArray = (Item[]) new Object[size];
@@ -14,41 +17,9 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         array = tempArray;
     }
 
-    private class RandomizedArrayIterator implements Iterator<Item> {
-        private RandomizedQueue<Item> rq;
-
-        public RandomizedArrayIterator() {
-            rq = new RandomizedQueue<>();
-            rq.size = size;
-            rq.array = (Item[]) new Object[array.length];
-            System.arraycopy(array, 0, rq.array, 0, size);
-        }
-
-        @Override
-        public boolean hasNext() {
-            return !rq.isEmpty();
-        }
-
-        @Override
-        public void remove() {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public Item next() {
-            if (!hasNext()) throw new NoSuchElementException();
-            return rq.dequeue();
-        }
-    }
-
-    public RandomizedQueue() {
-        array = (Item[]) new Object[2];
-    }
-
     public boolean isEmpty() {
         return size == 0;
     }
-
 
     public int size() {
         return size;
@@ -83,5 +54,32 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     @Override
     public Iterator<Item> iterator() {
         return new RandomizedArrayIterator();
+    }
+
+    private class RandomizedArrayIterator implements Iterator<Item> {
+        private RandomizedQueue<Item> rq;
+
+        public RandomizedArrayIterator() {
+            rq = new RandomizedQueue<>();
+            rq.size = size;
+            rq.array = (Item[]) new Object[array.length];
+            System.arraycopy(array, 0, rq.array, 0, size);
+        }
+
+        @Override
+        public boolean hasNext() {
+            return !rq.isEmpty();
+        }
+
+        @Override
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public Item next() {
+            if (!hasNext()) throw new NoSuchElementException();
+            return rq.dequeue();
+        }
     }
 }
