@@ -1,4 +1,4 @@
-public class InsertionX {
+public class InsertionX extends Sort {
 
     public static void sort(Comparable[] a) {
         int exchanges = 0;
@@ -20,15 +20,7 @@ public class InsertionX {
             }
             a[j] = v;
         }
-    }
 
-    private static boolean less(Comparable v, Comparable w) {
-        return v.compareTo(w) < 0;
-    }
-
-    private static void exch(Object[] a, int i, int j) {
-        Object swap = a[i];
-        a[i] = a[j];
-        a[j] = swap;
+        assert isSorted(a);
     }
 }
