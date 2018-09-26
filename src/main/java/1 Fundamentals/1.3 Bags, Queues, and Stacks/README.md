@@ -30,5 +30,9 @@
 - [checklist](http://coursera.cs.princeton.edu/algs4/checklists/queues.html)
 - [code](Assignment)
 
+## Exercises
+
+_4._ Write a stack client [Parentheses.java](Parentheses.java) that reads in sequence of left and right parentheses, braces, and brackets from standard input and uses a stack to determine whether the sequence is properly balanced. For example, your program should print true for [()]{}{[()()]()} and false for [(]). 
+
 [//]: #
-(TODO Exercises)
+(TODO Creative Problems)
