@@ -2,10 +2,9 @@
 
 ## Creative Problems
 
-_1.1.27_ **Binomial distribution.** Estimate the number of recursive calls that would be used by the method call binomial1(100, 50, .25) in [Binomial.java](https://algs4.cs.princeton.edu/11model/Binomial.java.html). Develop a better implementation that is based on saving computed values in an array.
+_1.1.27_ **Binomial distribution.** Estimate the number of recursive calls that would be used by the method call binomial(100, 50, .25) in [Binomial.java](https://algs4.cs.princeton.edu/11model/Binomial.java.html). Develop a better implementation that is based on saving computed values in an array.
 
-[//]: #
-(TODO)
+Solution: Total call: `2^101 - 1`.
 
 ## Web Exercises
 
