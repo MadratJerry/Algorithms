@@ -1,4 +1,4 @@
-# 2.2 [Quicksort](https://algs4.cs.princeton.edu/23quicksort/)
+# 2.3 [Quicksort](https://algs4.cs.princeton.edu/23quicksort/)
 
 ## Web Exercises
 
