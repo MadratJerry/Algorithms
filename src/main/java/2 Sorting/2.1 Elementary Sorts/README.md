@@ -31,5 +31,11 @@ _3._ **Optimal oblivious sorting networks.** Create a program that sorts four in
 
 Solution: [Sort4.java](Sort4.java) [Sort5.java](Sort5.java)
 
+The [0-1 principle](http://en.wikipedia.org/wiki/Sorting_network) says that you can verify the correctness of a (deterministic) sorting network by checking whether it correctly sorts an input that is a sequence of 0s and 1s. Thus, to check that Sort5.java works, you only need to test it on the 2^5 = 32 possible inputs of 0s and 1s. 
+
+_4._ **Optimal oblivious sorting (challenging).** Find an optimal sorting network for 6, 7, and 8 inputs, using 12, 16, and 19 if statements of the form in the previous problem, respectively. 
+
+Solution: [Sort6.java](Sort6.java)
+
 [//]: #
 (TODO Web Exercises)
