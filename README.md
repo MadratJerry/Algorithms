@@ -10,4 +10,5 @@
    - 2.2 [Mergesort](src/main/java/2%20Sorting/2.2%20Mergesort)
    - 2.3 [Quicksort](src/main/java/2%20Sorting/2.3%20Quicksort)
    - 2.4 [Priority Queues](src/main/java/2%20Sorting/2.4%20Priority%20Queues)
-   
+3. [**Searching**](src/main/java/3%20Searching)
+   - 3.1 [Elementary Symbol Tables](src/main/java/3%20Searching/3.1%20Elementary%20Symbol%20Tables)

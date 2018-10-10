@@ -10,7 +10,7 @@
 
 _2.4.2_ Criticize the following idea: to implement find the maximum in constant time, why not keep track of the maximum value inserted so far, then return that value for find the maximum?
 
-Solution. Will need to update the maximum value from scratch after a remove-the-maximum operation. 
+Solution: Will need to update the maximum value from scratch after a remove-the-maximum operation. 
 
 [//]: #
 (TODO Creative Problems)
