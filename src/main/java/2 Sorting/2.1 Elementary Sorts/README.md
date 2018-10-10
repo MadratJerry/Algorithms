@@ -21,5 +21,15 @@ _2.1.25_ **Insertion sort without exchanges.** Develop an implementation [Insert
 
 Solution: [InsertionX.java](InsertionX.java)
 
+## Web Exercises
+
+_1._ **Sorting networks.** Write a program [Sort3.java](https://algs4.cs.princeton.edu/21elementary/Sort3.java.html) with three if statements (and no loops) that reads in three integers a, b, and c from the command line and prints them out in ascending order. 
+
+Solution: [Sort3.java](Sort3.java)
+
+_3._ **Optimal oblivious sorting networks.** Create a program that sorts four integers using only 5 if statements, and one that sorts five integers using only 9 if statements of the type above? Oblivious sorting networks are useful for implementing sorting algorithms in hardware. How can you check that your program works for all inputs? 
+
+Solution: [Sort4.java](Sort4.java) [Sort5.java](Sort5.java)
+
 [//]: #
 (TODO Web Exercises)
