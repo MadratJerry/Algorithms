@@ -1,5 +1,5 @@
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -10,12 +10,12 @@ import java.util.stream.Collectors;
 public class SortNTest {
     final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
-    @Before
+    @BeforeEach
     public void setStream() {
         System.setOut(new PrintStream(outputStream));
     }
 
-    @After
+    @AfterEach
     public void cleanStream() {
         System.setOut(null);
     }

@@ -1,6 +1,6 @@
 import edu.princeton.cs.algs4.StdIn;
-import org.junit.AfterClass;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeEach;
 
 import java.io.IOException;
 import java.io.PipedInputStream;
@@ -34,13 +34,13 @@ public abstract class IOTest {
         resyncMethod.invoke(stdInClass);
     }
 
-    @Before
+    @BeforeEach
     public void init() throws IOException, InvocationTargetException, IllegalAccessException {
         stdInOutputStream = new PipedOutputStream();
         setScanner(new Scanner(new PipedInputStream(stdInOutputStream)));
     }
 
-    @AfterClass
+    @AfterAll
     public static void tearDownAll() throws InvocationTargetException, IllegalAccessException {
         resync();
     }

@@ -1,7 +1,7 @@
 import edu.princeton.cs.algs4.InsertionX;
 import edu.princeton.cs.algs4.StdRandom;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
@@ -16,6 +16,6 @@ public class InsertionXTest {
         System.arraycopy(a, 0, b, 0, size);
         InsertionX.sort(a);
         Arrays.sort(b);
-        Assert.assertArrayEquals(a, b);
+        Assertions.assertArrayEquals(a, b);
     }
 }
