@@ -1,4 +1,3 @@
-import base.StdIOAssertion;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 
@@ -10,6 +9,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static interceptor.StdIO.captureOutput;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
 class SortNTest {
@@ -39,15 +40,21 @@ class SortNTest {
         return Stream.of(3, 4, 5, 6)
                 .map(index -> dynamicTest(String.format("Sort%dTest", index), () -> {
                     Map<String[], String> map = SortNTest.testMap(index);
-                    map.forEach((array, str) -> StdIOAssertion.assetIOEquals(null, () -> {
-                        try {
-                            Class aClass = Class.forName("Sort" + index);
-                            Method mainMethod = aClass.getMethod("main", String[].class);
-                            mainMethod.invoke(aClass, new Object[]{array});
-                        } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-                            e.printStackTrace();
-                        }
-                    }, str));
+                    map.forEach((array, result) ->
+                            assertEquals(
+                                    captureOutput(
+                                            () -> {
+                                                try {
+                                                    Class aClass = Class.forName("Sort" + index);
+                                                    Method mainMethod = aClass.getMethod("main", String[].class);
+                                                    mainMethod.invoke(aClass, new Object[]{array});
+                                                } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                    ),
+                                    result
+                            ));
                 }));
     }
 

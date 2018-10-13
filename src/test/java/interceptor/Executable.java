@@ -1,4 +1,4 @@
-package base;
+package interceptor;
 
 @FunctionalInterface
 public interface Executable {
