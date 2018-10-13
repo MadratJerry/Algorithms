@@ -27,7 +27,7 @@ public class StdIO {
         }
     }
 
-    private static void excute(Executable executable, LifeCycle lifeCycle) throws IllegalAccessException {
+    private static void execute(Executable executable, LifeCycle lifeCycle) throws IllegalAccessException {
         lifeCycle.before();
         executable.execute();
         lifeCycle.after();
@@ -35,7 +35,7 @@ public class StdIO {
 
     public static void injectInput(String providedInput, Executable executable) {
         try {
-            excute(executable, new LifeCycle() {
+            execute(executable, new LifeCycle() {
                 @Override
                 public void before() throws IllegalAccessException {
                     scanner.set(Scanner.class, new Scanner(new ByteArrayInputStream(providedInput.getBytes())));
@@ -55,7 +55,7 @@ public class StdIO {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
         try {
-            excute(executable, new LifeCycle() {
+            execute(executable, new LifeCycle() {
                 @Override
                 public void before() throws IllegalAccessException {
                     printer.set(PrintWriter.class, new PrintWriter(outputStream));

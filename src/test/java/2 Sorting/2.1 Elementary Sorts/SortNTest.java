@@ -45,9 +45,10 @@ class SortNTest {
                                     captureOutput(
                                             () -> {
                                                 try {
-                                                    Class aClass = Class.forName("Sort" + index);
-                                                    Method mainMethod = aClass.getMethod("main", String[].class);
-                                                    mainMethod.invoke(aClass, new Object[]{array});
+                                                    Class sortClass = Class.forName("Sort" + index);
+                                                    @SuppressWarnings("unchecked")
+                                                    Method mainMethod = sortClass.getMethod("main", String[].class);
+                                                    mainMethod.invoke(sortClass, new Object[]{array});
                                                 } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
                                                     e.printStackTrace();
                                                 }
