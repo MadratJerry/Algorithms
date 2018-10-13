@@ -1,14 +1,14 @@
 import edu.princeton.cs.algs4.InsertionX;
 import edu.princeton.cs.algs4.StdRandom;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.RepeatedTest;
 
 import java.util.Arrays;
 
-public class InsertionXTest {
+class InsertionXTest {
 
-    @Test
-    public void testSort() {
+    @RepeatedTest(16)
+    void testSort() {
         int size = 100;
         Integer[] a = new Integer[size];
         Integer[] b = new Integer[size];

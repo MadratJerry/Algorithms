@@ -1,32 +1,26 @@
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import base.StdIOAssertion;
+import org.junit.jupiter.api.DynamicTest;
+import org.junit.jupiter.api.TestFactory;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-public class SortNTest {
-    final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
-    @BeforeEach
-    public void setStream() {
-        System.setOut(new PrintStream(outputStream));
-    }
+class SortNTest {
 
-    @AfterEach
-    public void cleanStream() {
-        System.setOut(null);
-    }
-
-    public static String[] getArray(int length) {
+    private static String[] getArray(int length) {
         String[] array = new String[length];
         for (int i = 0; i < length; i++) array[i] = "0";
         return array;
     }
 
-    public static HashMap<String[], String> testMap(int n) {
+    private static HashMap<String[], String> testMap(int n) {
         HashMap<String[], String> map = new HashMap<>();
         for (int i = 0; i < Math.pow(2, n); i++) {
             int num = i, index = 0;
@@ -39,4 +33,22 @@ public class SortNTest {
         }
         return map;
     }
+
+    @TestFactory
+    Stream<DynamicTest> dynamicSortNTest() {
+        return Stream.of(3, 4, 5, 6)
+                .map(index -> dynamicTest(String.format("Sort%dTest", index), () -> {
+                    Map<String[], String> map = SortNTest.testMap(index);
+                    map.forEach((array, str) -> StdIOAssertion.assetIOEquals(null, () -> {
+                        try {
+                            Class aClass = Class.forName("Sort" + index);
+                            Method mainMethod = aClass.getMethod("main", String[].class);
+                            mainMethod.invoke(aClass, new Object[]{array});
+                        } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+                            e.printStackTrace();
+                        }
+                    }, str));
+                }));
+    }
+
 }
