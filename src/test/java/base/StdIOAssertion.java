@@ -6,8 +6,10 @@ import org.junit.jupiter.api.Assertions;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.lang.reflect.Field;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class StdIOAssertion {
@@ -29,13 +31,20 @@ public class StdIOAssertion {
     public static void assetIOEquals(String providedInput, Executable executable, String expectedOutput) {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         try {
-            scanner.set(Scanner.class, new Scanner(new ByteArrayInputStream(providedInput.getBytes())));
+            if (providedInput != null)
+                scanner.set(Scanner.class, new Scanner(new ByteArrayInputStream(providedInput.getBytes())));
             printer.set(PrintWriter.class, new PrintWriter(outputStream));
+
+            executable.execute();
+
+            if (providedInput != null)
+                scanner.set(Scanner.class, new Scanner(new java.io.BufferedInputStream(System.in), StandardCharsets.UTF_8));
+            printer.set(PrintWriter.class,
+                    new PrintWriter(new OutputStreamWriter(System.out, StandardCharsets.UTF_8), true));
+            Assertions.assertEquals(expectedOutput, outputStream.toString());
         } catch (IllegalAccessException e) {
             e.printStackTrace();
             Assertions.fail();
         }
-        executable.execute();
-        Assertions.assertEquals(expectedOutput, outputStream.toString());
     }
 }
