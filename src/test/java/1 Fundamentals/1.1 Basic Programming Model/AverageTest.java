@@ -1,8 +1,8 @@
 import edu.princeton.cs.algs4.StdRandom;
 import org.junit.jupiter.api.RepeatedTest;
 
-import java.util.ArrayList;
-import java.util.stream.Collectors;
+import java.util.Arrays;
+import java.util.Objects;
 
 import static interceptor.StdIO.captureOutput;
 import static interceptor.StdIO.injectInput;
@@ -13,17 +13,16 @@ class AverageTest {
     @RepeatedTest(16)
     void main() {
         int size = StdRandom.uniform(1024) + 1;
-        ArrayList<Integer> list = new ArrayList<>(size);
-        for (int i = 0; i < size; i++)
-            list.add((StdRandom.uniform(Integer.MIN_VALUE / 4, Integer.MAX_VALUE / 4)));
+        String input = captureOutput(() ->
+                RandomSeq.main(
+                        (String[]) Arrays.stream(new int[]{size, Integer.MIN_VALUE / size, Integer.MAX_VALUE / size})
+                                .boxed()
+                                .map(Objects::toString)
+                                .toArray()));
+
         assertEquals(
-                captureOutput(() -> injectInput(
-                        list.stream().map(Object::toString).collect(Collectors.joining(" ")),
-                        Average::main)),
-                captureOutput(() -> injectInput(
-                        list.stream().map(Object::toString).collect(Collectors.joining(" ")),
-                        () -> edu.princeton.cs.algs4.Average.main(null)
-                ))
+                captureOutput(() -> injectInput(input, Average::main)),
+                captureOutput(() -> injectInput(input, () -> edu.princeton.cs.algs4.Average.main(null)))
         );
     }
 }
