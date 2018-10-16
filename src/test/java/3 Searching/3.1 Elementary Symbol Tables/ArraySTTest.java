@@ -1,4 +1,4 @@
-public class ArraySTTest extends SymbolTableTest {
+public class ArraySTTest extends BasicSymbolTableTest {
 
     ArraySTTest() {
         st = new ArrayST<>();

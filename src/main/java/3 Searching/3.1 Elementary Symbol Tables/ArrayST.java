@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class ArrayST<Key, Value> implements SymbolTable<Key, Value> {
+public class ArrayST<Key, Value> implements BasicSymbolTable<Key, Value> {
     private static final int INIT_SIZE = 8;
 
     private Value[] values;   // symbol table values

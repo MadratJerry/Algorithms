@@ -3,7 +3,7 @@ import edu.princeton.cs.algs4.StdOut;
 
 import java.util.LinkedList;
 
-public class SequentialSearchST<Key, Value> implements SymbolTable<Key, Value> {
+public class SequentialSearchST<Key, Value> implements BasicSymbolTable<Key, Value> {
     private Node first;
     private int n;
 

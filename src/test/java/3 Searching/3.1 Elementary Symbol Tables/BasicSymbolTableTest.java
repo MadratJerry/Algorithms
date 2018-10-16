@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Test;
 import static interceptor.StdIO.captureOutput;
 import static org.junit.jupiter.api.Assertions.*;
 
-abstract class SymbolTableTest {
-    SymbolTable<String, Integer> st;
+abstract class BasicSymbolTableTest {
+    BasicSymbolTable<String, Integer> st;
 
     @Test
     void putAndGet() {

@@ -1,4 +1,4 @@
-class SequentialSearchSTTest extends SymbolTableTest {
+class SequentialSearchSTTest extends BasicSymbolTableTest {
 
     SequentialSearchSTTest() {
         st = new SequentialSearchST<>();

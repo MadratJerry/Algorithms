@@ -1,4 +1,4 @@
-public interface SymbolTable<Key, Value> {
+public interface BasicSymbolTable<Key, Value> {
 
     void put(Key key, Value value);
 
