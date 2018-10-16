@@ -12,17 +12,18 @@ class AverageTest {
 
     @RepeatedTest(16)
     void main() {
-        int size = StdRandom.uniform(1024) + 1;
+        int size = StdRandom.uniform(512) + 1;
         String input = captureOutput(() ->
                 RandomSeq.main(
-                        (String[]) Arrays.stream(new int[]{size, Integer.MIN_VALUE / size, Integer.MAX_VALUE / size})
+                         Arrays.stream(new int[]{size, Integer.MIN_VALUE / size, Integer.MAX_VALUE / size})
                                 .boxed()
                                 .map(Objects::toString)
-                                .toArray()));
+                                .toArray(String[]::new)
+                ));
 
         assertEquals(
-                captureOutput(() -> injectInput(input, Average::main)),
-                captureOutput(() -> injectInput(input, () -> edu.princeton.cs.algs4.Average.main(null)))
+                captureOutput(() -> injectInput(input, () -> edu.princeton.cs.algs4.Average.main(null))),
+                captureOutput(() -> injectInput(input, Average::main))
         );
     }
 }
