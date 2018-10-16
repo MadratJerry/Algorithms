@@ -11,7 +11,9 @@ abstract class SymbolTableTest {
     void putAndGet() {
         st.put("First", 1);
         st.put("Second", 2);
-        assertEquals((int) st.get("First"), 1);
+        assertEquals(1, (int) st.get("First"));
+        assertEquals(2, (int) st.get("Second"));
+        assertNull(st.get("Third"));
         assertTrue(st.contains("Second"));
     }
 
@@ -26,8 +28,9 @@ abstract class SymbolTableTest {
     @Test
     void delete() {
         st.put("First", 1);
-        st.delete("First");
-        assertNull(st.get("First"));
+        st.put("Second", 2);
+        st.delete("Second");
+        assertNull(st.get("Second"));
     }
 
     @Test
@@ -46,10 +49,10 @@ abstract class SymbolTableTest {
         st.put("Second", 2);
         st.put("Third", 3);
         assertEquals(
+                "FirstSecondThird",
                 captureOutput(() -> {
                     for (String key : st.keys()) StdOut.print(key);
-                }),
-                "FirstSecondThird"
+                })
         );
     }
 }

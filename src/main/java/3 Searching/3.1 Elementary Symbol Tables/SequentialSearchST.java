@@ -41,14 +41,14 @@ public class SequentialSearchST<Key, Value> implements SymbolTable<Key, Value> {
     public Value get(Key key) {
         if (key == null) throw new IllegalArgumentException("Key is null");
 
-        for (Node node = first; first != null; node = node.next)
+        for (Node node = first; node != null; node = node.next)
             if (key.equals(node.key)) return node.value;
         return null;
     }
 
     @Override
     public void delete(Key key) {
-        for (Node node = first, previous = null; first != null; previous = node, node = node.next)
+        for (Node node = first, previous = null; node != null; previous = node, node = node.next)
             if (key.equals(node.key)) {
                 if (previous == null) first = node.next;
                 else previous.next = node.next;
@@ -75,8 +75,8 @@ public class SequentialSearchST<Key, Value> implements SymbolTable<Key, Value> {
     @Override
     public Iterable<Key> keys() {
         LinkedList<Key> list = new LinkedList<>();
-        for (Node node = first; first != null; node = node.next)
-            list.add(node.key);
+        for (Node node = first; node != null; node = node.next)
+            list.offerFirst(node.key);
 
         return list;
     }
