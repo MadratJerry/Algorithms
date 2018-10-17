@@ -8,16 +8,26 @@ public class ArrayST<Key, Value> implements BasicSymbolTable<Key, Value> {
     private int n = 0;      // number of elements in symbol table
 
     public ArrayST() {
-        keys = (Key[]) new Object[INIT_SIZE];
-        values = (Value[]) new Object[INIT_SIZE];
+        @SuppressWarnings("unchecked")
+        Key[] keys = (Key[]) new Object[INIT_SIZE];
+        @SuppressWarnings("unchecked")
+        Value[] values = (Value[]) new Object[INIT_SIZE];
+
+        this.keys = keys;
+        this.values = values;
     }
 
     private void resize(int capacity) {
+        @SuppressWarnings("unchecked")
         Key[] newKeys = (Key[]) new Object[capacity];
+        @SuppressWarnings("unchecked")
         Value[] newValues = (Value[]) new Object[capacity];
 
         System.arraycopy(keys, 0, newKeys, 0, n);
         System.arraycopy(values, 0, newValues, 0, n);
+
+        this.keys = newKeys;
+        this.values = newValues;
     }
 
     @Override
@@ -31,7 +41,7 @@ public class ArrayST<Key, Value> implements BasicSymbolTable<Key, Value> {
     public void put(Key key, Value value) {
         delete(key);
 
-        if (n > keys.length) resize(2 * n);
+        if (n >= keys.length) resize(2 * n);
 
         keys[n] = key;
         values[n] = value;
