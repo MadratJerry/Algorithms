@@ -1,6 +1,6 @@
-public class ArraySTTest extends BasicSymbolTableTest {
+class ArraySTTest extends BasicSymbolTableTest {
 
     ArraySTTest() {
-        st = new ArrayST<>();
+        setST(new ArrayST<>());
     }
 }
