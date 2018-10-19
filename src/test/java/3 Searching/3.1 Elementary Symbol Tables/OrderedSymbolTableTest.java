@@ -1,7 +1,7 @@
 abstract class OrderedSymbolTableTest extends BasicSymbolTableTest {
 
     @Override
-    OrderedSymbolTable<String, Integer> getST() {
-        return (OrderedSymbolTable<String, Integer>) super.getST();
+    OrderedSymbolTable<String, String> getST() {
+        return (OrderedSymbolTable<String, String>) super.getST();
     }
 }
