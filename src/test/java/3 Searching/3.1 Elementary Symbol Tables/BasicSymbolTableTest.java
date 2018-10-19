@@ -16,20 +16,29 @@ abstract class BasicSymbolTableTest {
     }
 
     @Test
-    void putAndGet() {
+    void put() {
         getST().put("First", 1);
         getST().put("Second", 2);
         assertEquals(1, (int) getST().get("First"));
         assertEquals(2, (int) getST().get("Second"));
-        assertNull(getST().get("Third"));
-        assertTrue(getST().contains("Second"));
     }
 
     @Test
-    void putManyAndGet() {
+    void get() {
+        getST().put("First", 1);
+        getST().put("Second", 2);
+        assertNull(getST().get("Third"));
         int maxSize = 1024;
         for (int i = 0; i < maxSize; i++) getST().put(i + "", i);
         assertEquals(maxSize - 1, (int) getST().get((maxSize - 1) + ""));
+    }
+
+    @Test
+    void contains() {
+        getST().put("First", 1);
+        getST().put("Second", 2);
+        assertTrue(getST().contains("Second"));
+        assertFalse(getST().contains("Third"));
     }
 
     @Test

@@ -10,7 +10,7 @@ public interface OrderedSymbolTable<Key extends Comparable<Key>, Value> extends 
 
     int rank(Key key);
 
-    Key select(int k);
+    Key select(int index);
 
     void deleteMin();
 
