@@ -23,6 +23,8 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements Order
     }
 
     private void resize(int capacity) {
+        assert capacity >= n;
+
         @SuppressWarnings("unchecked")
         Key[] newKeys = (Key[]) new Comparable[capacity];
         @SuppressWarnings("unchecked")
@@ -37,6 +39,24 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements Order
 
     private void checkKey(Key key) {
         if (key == null) throw new IllegalArgumentException("The argument key is null");
+    }
+
+    private boolean check() {
+        return isSorted() && rankCheck();
+    }
+
+    private boolean isSorted() {
+        for (int i = 1; i < size(); i++)
+            if (keys[i].compareTo(keys[i - 1]) < 0) return false;
+        return true;
+    }
+
+    private boolean rankCheck() {
+        for (int i = 0; i < size(); i++)
+            if (i != rank(select(i))) return false;
+        for (int i = 0; i < size(); i++)
+            if (keys[i].compareTo(select(rank(keys[i]))) != 0) return false;
+        return true;
     }
 
     @Override
@@ -64,6 +84,8 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements Order
         keys[index] = key;
         values[index] = value;
         n++;
+
+        assert check();
     }
 
     @Override
@@ -90,6 +112,8 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements Order
         values[n] = null;
 
         if (n > 0 && n == keys.length / 4) resize(keys.length / 2);
+
+        assert check();
     }
 
     @Override
