@@ -19,9 +19,14 @@ public class SequentialSearchST<Key, Value> implements BasicSymbolTable<Key, Val
         }
     }
 
+    private void checkKey(Key key) {
+        if (key == null) throw new IllegalArgumentException("The argument key is null");
+    }
+
     @Override
     public void put(Key key, Value value) {
-        if (key == null) throw new IllegalArgumentException("The argument key is null");
+        checkKey(key);
+
         if (value == null) {
             delete(key);
             return;
@@ -39,7 +44,7 @@ public class SequentialSearchST<Key, Value> implements BasicSymbolTable<Key, Val
 
     @Override
     public Value get(Key key) {
-        if (key == null) throw new IllegalArgumentException("The argument key is null");
+        checkKey(key);
 
         for (Node node = first; node != null; node = node.next)
             if (key.equals(node.key)) return node.value;
@@ -48,6 +53,8 @@ public class SequentialSearchST<Key, Value> implements BasicSymbolTable<Key, Val
 
     @Override
     public void delete(Key key) {
+        checkKey(key);
+
         for (Node node = first, previous = null; node != null; previous = node, node = node.next)
             if (key.equals(node.key)) {
                 if (previous == null) first = node.next;

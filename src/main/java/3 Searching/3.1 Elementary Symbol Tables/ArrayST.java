@@ -30,8 +30,13 @@ public class ArrayST<Key, Value> implements BasicSymbolTable<Key, Value> {
         this.values = newValues;
     }
 
+    private void checkKey(Key key) {
+        if (key == null) throw new IllegalArgumentException("The argument key is null");
+    }
+
     @Override
     public Value get(Key key) {
+        checkKey(key);
         for (int i = 0; i < n; i++)
             if (keys[i].equals(key)) return values[i];
         return null;
@@ -55,6 +60,7 @@ public class ArrayST<Key, Value> implements BasicSymbolTable<Key, Value> {
 
     @Override
     public void delete(Key key) {
+        checkKey(key);
         for (int i = 0; i < n; i++) {
             if (key.equals(keys[i])) {
                 keys[i] = keys[n - 1];
