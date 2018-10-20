@@ -42,12 +42,14 @@ abstract class BasicSymbolTableTest {
     void put() {
         assertEquals("Phoenix", getST().get("09:00:03"));
         assertEquals("Phoenix", getST().get("09:37:44"));
+        assertThrows(IllegalArgumentException.class, () -> getST().put(null, "Whatever"));
     }
 
     @Test
     void get() {
         put();
         assertNull(getST().get("10:00:00"));
+        assertThrows(IllegalArgumentException.class, () -> getST().get(null));
     }
 
     @Test
@@ -68,6 +70,7 @@ abstract class BasicSymbolTableTest {
     void delete() {
         getST().delete("09:01:10");
         assertNull(getST().get("09:01:10"));
+        assertThrows(IllegalArgumentException.class, () -> getST().delete(null));
     }
 
     @Test
@@ -83,7 +86,7 @@ abstract class BasicSymbolTableTest {
         assertEquals(
                 "09:00:0009:00:0309:00:1309:00:5909:01:1009:03:1309:10:1109:10:2509:14:2509:19:3209:19:4609:21:0509:22:4309:22:5409:25:5209:35:2109:36:1409:37:44",
                 captureOutput(() -> {
-                    for (String key : st.keys()) StdOut.print(key);
+                    for (String key : getST().keys()) StdOut.print(key);
                 })
         );
     }
