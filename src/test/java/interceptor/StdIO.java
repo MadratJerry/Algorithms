@@ -2,6 +2,7 @@ package interceptor;
 
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
+import org.junit.jupiter.api.function.Executable;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -27,47 +28,34 @@ public class StdIO {
         }
     }
 
-    private static void execute(Executable executable, LifeCycle lifeCycle) throws IllegalAccessException {
-        lifeCycle.before();
-        executable.execute();
-        lifeCycle.after();
+    private static void execute(Executable execute, Executable beforeExecute, Executable afterExecute) throws Throwable {
+        beforeExecute.execute();
+        execute.execute();
+        afterExecute.execute();
     }
 
-    public static void injectInput(String providedInput, Executable executable) {
+    public static void injectInput(String providedInput, Executable execute) {
         try {
-            execute(executable, new LifeCycle() {
-                @Override
-                public void before() throws IllegalAccessException {
-                    scanner.set(Scanner.class, new Scanner(new ByteArrayInputStream(providedInput.getBytes())));
-                }
-
-                @Override
-                public void after() throws IllegalAccessException {
-                    scanner.set(Scanner.class, new Scanner(new java.io.BufferedInputStream(System.in), StandardCharsets.UTF_8));
-                }
-            });
-        } catch (IllegalAccessException e) {
+            execute(execute,
+                    () -> scanner.set(Scanner.class, new Scanner(
+                            new ByteArrayInputStream(providedInput.getBytes()))),
+                    () -> scanner.set(Scanner.class, new Scanner(
+                            new java.io.BufferedInputStream(System.in), StandardCharsets.UTF_8))
+            );
+        } catch (Throwable e) {
             e.printStackTrace();
         }
     }
 
-    public static String captureOutput(Executable executable) {
+    public static String captureOutput(Executable execute) {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
         try {
-            execute(executable, new LifeCycle() {
-                @Override
-                public void before() throws IllegalAccessException {
-                    printer.set(PrintWriter.class, new PrintWriter(outputStream));
-                }
-
-                @Override
-                public void after() throws IllegalAccessException {
-                    printer.set(PrintWriter.class,
-                            new PrintWriter(new OutputStreamWriter(System.out, StandardCharsets.UTF_8), true));
-                }
-            });
-        } catch (IllegalAccessException e) {
+            execute(execute,
+                    () -> printer.set(PrintWriter.class, new PrintWriter(outputStream)),
+                    () -> new PrintWriter(new OutputStreamWriter(System.out, StandardCharsets.UTF_8), true)
+            );
+        } catch (Throwable e) {
             e.printStackTrace();
         }
 
