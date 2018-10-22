@@ -52,13 +52,15 @@ abstract class OrderedSymbolTableTest extends BasicSymbolTableTest {
 
     @Test
     void deleteMin() {
-        while (!getST().isEmpty()) getST().deleteMin();
+        for (int i = 0, size = getST().size(); i < size; i++)
+            getST().deleteMin();
         assertEquals(0, getST().size());
     }
 
     @Test
     void deleteMax() {
-        while (!getST().isEmpty()) getST().deleteMax();
+        for (int i = 0, size = getST().size(); i < size; i++)
+            getST().deleteMax();
         assertEquals(0, getST().size());
     }
 

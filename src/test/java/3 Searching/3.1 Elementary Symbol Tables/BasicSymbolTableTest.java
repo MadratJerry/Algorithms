@@ -1,12 +1,17 @@
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.StdRandom;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static interceptor.StdIO.captureOutput;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 abstract class BasicSymbolTableTest {
     private BasicSymbolTable<String, String> st;
+    private final static Map<String, String> map = new HashMap<>();
 
     BasicSymbolTable<String, String> getST() {
         return st;
@@ -16,26 +21,34 @@ abstract class BasicSymbolTableTest {
         this.st = st;
     }
 
+    @BeforeAll
+    static void setUpAll() {
+        map.put("09:00:00", "Chicago");
+        map.put("09:00:03", "Phoenix");
+        map.put("09:00:13", "Houston");
+        map.put("09:00:59", "Chicago");
+        map.put("09:01:10", "Houston");
+        map.put("09:03:13", "Chicago");
+        map.put("09:10:11", "Seattle");
+        map.put("09:10:25", "Seattle");
+        map.put("09:14:25", "Phoenix");
+        map.put("09:19:32", "Chicago");
+        map.put("09:19:46", "Chicago");
+        map.put("09:21:05", "Chicago");
+        map.put("09:22:43", "Seattle");
+        map.put("09:22:54", "Seattle");
+        map.put("09:25:52", "Chicago");
+        map.put("09:35:21", "Chicago");
+        map.put("09:36:14", "Seattle");
+        map.put("09:37:44", "Phoenix");
+    }
+
     @BeforeEach
     void setUp() {
-        getST().put("09:00:00", "Chicago");
-        getST().put("09:00:03", "Phoenix");
-        getST().put("09:00:13", "Houston");
-        getST().put("09:00:59", "Chicago");
-        getST().put("09:01:10", "Houston");
-        getST().put("09:03:13", "Chicago");
-        getST().put("09:10:11", "Seattle");
-        getST().put("09:10:25", "Seattle");
-        getST().put("09:14:25", "Phoenix");
-        getST().put("09:19:32", "Chicago");
-        getST().put("09:19:46", "Chicago");
-        getST().put("09:21:05", "Chicago");
-        getST().put("09:22:43", "Seattle");
-        getST().put("09:22:54", "Seattle");
-        getST().put("09:25:52", "Chicago");
-        getST().put("09:35:21", "Chicago");
-        getST().put("09:36:14", "Seattle");
-        getST().put("09:37:44", "Phoenix");
+        String[] keyArray = map.keySet().toArray(String[]::new);
+        StdRandom.shuffle(keyArray);
+
+        for (String key : keyArray) getST().put(key, map.get(key));
     }
 
     @Test
@@ -83,11 +96,8 @@ abstract class BasicSymbolTableTest {
 
     @Test
     void keys() {
-        assertEquals(
-                "09:00:0009:00:0309:00:1309:00:5909:01:1009:03:1309:10:1109:10:2509:14:2509:19:3209:19:4609:21:0509:22:4309:22:5409:25:5209:35:2109:36:1409:37:44",
-                captureOutput(() -> {
-                    for (String key : getST().keys()) StdOut.print(key);
-                })
-        );
+        Set<String> set = map.keySet();
+        for (String key : getST().keys())
+            assertTrue(set.contains(key));
     }
 }
