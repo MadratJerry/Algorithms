@@ -2,8 +2,7 @@ import edu.princeton.cs.algs4.StdOut;
 import org.junit.jupiter.api.Test;
 
 import static interceptor.StdIO.captureOutput;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 abstract class OrderedSymbolTableTest extends BasicSymbolTableTest {
 
@@ -72,10 +71,16 @@ abstract class OrderedSymbolTableTest extends BasicSymbolTableTest {
     @Test
     void floor() {
         assertEquals("09:03:13", getST().floor("09:05:00"));
+        assertEquals("09:00:00", getST().floor("09:00:00"));
+        assertEquals("09:37:44", getST().floor("10:00:00"));
+        assertNull(getST().floor("05:58:59"));
     }
 
     @Test
     void ceiling() {
         assertEquals("09:35:21", getST().ceiling("09:35:00"));
+        assertEquals("09:00:00", getST().ceiling("09:00:00"));
+        assertEquals("09:00:03", getST().ceiling("09:00:01"));
+        assertNull(getST().ceiling("09:37:45"));
     }
 }
