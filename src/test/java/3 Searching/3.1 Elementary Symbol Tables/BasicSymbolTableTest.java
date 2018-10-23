@@ -53,6 +53,7 @@ abstract class BasicSymbolTableTest {
 
     @Test
     void put() {
+        assertEquals(map.size(), getST().size());
         assertEquals("Phoenix", getST().get("09:00:03"));
         assertEquals("Phoenix", getST().get("09:37:44"));
         assertThrows(IllegalArgumentException.class, () -> getST().put(null, "Whatever"));
@@ -97,7 +98,11 @@ abstract class BasicSymbolTableTest {
     @Test
     void keys() {
         Set<String> set = map.keySet();
-        for (String key : getST().keys())
+        int count = 0;
+        for (String key : getST().keys()) {
             assertTrue(set.contains(key));
+            count++;
+        }
+        assertEquals(map.size(), count);
     }
 }
