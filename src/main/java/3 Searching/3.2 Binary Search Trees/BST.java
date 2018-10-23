@@ -2,13 +2,13 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class BST<Key extends Comparable<Key>, Value> implements OrderedSymbolTable<Key, Value> {
-    private Node root;
+    Node root;
 
-    private class Node {
-        private Key key;
-        private Value value;
-        private int size;
-        private Node left, right;
+    class Node {
+        Key key;
+        Value value;
+        int size;
+        Node left, right;
 
         Node(Key key, Value value, int size) {
             this.key = key;
@@ -17,7 +17,7 @@ public class BST<Key extends Comparable<Key>, Value> implements OrderedSymbolTab
         }
     }
 
-    private void checkKey(Key key) {
+    void checkKey(Key key) {
         if (key == null) throw new IllegalArgumentException("The argument key is null");
     }
 
@@ -45,14 +45,17 @@ public class BST<Key extends Comparable<Key>, Value> implements OrderedSymbolTab
     public Value get(Key key) {
         checkKey(key);
 
-        Node node = root;
-        while (node != null) {
-            int cmp = key.compareTo(node.key);
-            if (cmp < 0) node = node.left;
-            else if (cmp > 0) node = node.right;
-            else return node.value;
-        }
-        return null;
+        Node target = get(root, key);
+        return target == null ? null : target.value;
+    }
+
+    private Node get(Node node, Key key) {
+        if (node == null) return null;
+
+        int cmp = key.compareTo(node.key);
+        if (cmp < 0) return get(node.left, key);
+        else if (cmp > 0) return get(node.right, key);
+        else return node;
     }
 
     @Override

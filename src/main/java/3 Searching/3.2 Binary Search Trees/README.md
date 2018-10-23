@@ -9,3 +9,7 @@ Solution: [BST.java](BST.java)
 _3.2.10_ Write a test client [TestBST.java](https://algs4.cs.princeton.edu/32bst/TestBST.java.html) for use in testing the implementations of `min()`, `max()`, `floor()`, `ceiling()`, `select()`, `rank()`, `deleteMin()`, `deleteMax()`, and `keys()` that are given in the text. 
 
 Solution: [BSTTest.java](../../../../test/java/3%20Searching/3.1%20Elementary%20Symbol%20Tables/BSTTest.java)
+
+_3.2.13_ Give nonrecursive implementations of `get()`, `put()`, and `keys()` for BST.
+
+Solution: [NonrecursiveBST.java](NonrecursiveBST.java)
