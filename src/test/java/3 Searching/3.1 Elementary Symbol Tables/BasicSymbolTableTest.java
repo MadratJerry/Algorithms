@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 abstract class BasicSymbolTableTest {
     private BasicSymbolTable<String, String> st;
-    private final static Map<String, String> map = new HashMap<>();
+    final static Map<String, String> map = new HashMap<>();
 
     BasicSymbolTable<String, String> getST() {
         return st;

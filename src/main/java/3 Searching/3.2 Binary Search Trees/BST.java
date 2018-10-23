@@ -102,6 +102,14 @@ public class BST<Key extends Comparable<Key>, Value> implements OrderedSymbolTab
         else return node.size;
     }
 
+    public int height() {
+        return height(root);
+    }
+
+    private int height(Node node) {
+        return node == null ? 0 : Math.max(height(node.left), height(node.right)) + 1;
+    }
+
     @Override
     public Iterable<Key> keys() {
         return keys(min(), max());
