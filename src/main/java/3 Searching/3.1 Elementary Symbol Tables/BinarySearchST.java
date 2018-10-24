@@ -3,10 +3,10 @@ import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
 public class BinarySearchST<Key extends Comparable<Key>, Value> implements OrderedSymbolTable<Key, Value> {
-    private static final int INIT_CAPACITY = 2;
-    private Key[] keys;
-    private Value[] values;
-    private int n = 0;
+    private static final int     INIT_CAPACITY = 2;
+    private              int     n             = 0;
+    private              Key[]   keys;
+    private              Value[] values;
 
     public BinarySearchST() {
         this(INIT_CAPACITY);

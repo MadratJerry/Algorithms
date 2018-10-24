@@ -14,12 +14,14 @@ class AverageTest {
     void main() {
         int size = StdRandom.uniform(512) + 1;
         String input = captureOutput(() ->
-                RandomSeq.main(
-                         Arrays.stream(new int[]{size, Integer.MIN_VALUE / size, Integer.MAX_VALUE / size})
-                                .boxed()
-                                .map(Objects::toString)
-                                .toArray(String[]::new)
-                ));
+                                             RandomSeq.main(
+                                                     Arrays.stream(new int[]{size,
+                                                                             Integer.MIN_VALUE / size,
+                                                                             Integer.MAX_VALUE / size})
+                                                           .boxed()
+                                                           .map(Objects::toString)
+                                                           .toArray(String[]::new)
+                                             ));
 
         assertEquals(
                 captureOutput(() -> injectInput(input, () -> edu.princeton.cs.algs4.Average.main(null))),

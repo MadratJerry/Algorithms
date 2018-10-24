@@ -22,10 +22,10 @@ abstract class OrderedSymbolTableTest extends BasicSymbolTableTest {
     void keys() {
         assertEquals(
                 "09:19:32" +
-                        "09:19:46" +
-                        "09:21:05" +
-                        "09:22:43" +
-                        "09:22:54",
+                "09:19:46" +
+                "09:21:05" +
+                "09:22:43" +
+                "09:22:54",
                 captureOutput(() -> {
                     for (String key : getST().keys("09:15:00", "09:25:00")) StdOut.print(key);
                 })

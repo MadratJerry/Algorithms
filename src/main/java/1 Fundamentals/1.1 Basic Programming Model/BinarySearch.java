@@ -18,7 +18,7 @@ public class BinarySearch {
     }
 
     public static void main(String[] args) {
-        In in = new In(args[0]);
+        In    in        = new In(args[0]);
         int[] whiteList = in.readAllInts();
 
         Arrays.sort(whiteList);

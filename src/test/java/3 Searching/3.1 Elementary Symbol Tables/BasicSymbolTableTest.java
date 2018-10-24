@@ -10,8 +10,8 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 abstract class BasicSymbolTableTest {
-    private BasicSymbolTable<String, String> st;
-    final static Map<String, String> map = new HashMap<>();
+    private      BasicSymbolTable<String, String> st;
+    final static Map<String, String>              map = new HashMap<>();
 
     BasicSymbolTable<String, String> getST() {
         return st;
@@ -97,8 +97,8 @@ abstract class BasicSymbolTableTest {
 
     @Test
     void keys() {
-        Set<String> set = map.keySet();
-        int count = 0;
+        Set<String> set   = map.keySet();
+        int         count = 0;
         for (String key : getST().keys()) {
             assertTrue(set.contains(key));
             count++;

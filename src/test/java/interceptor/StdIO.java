@@ -13,9 +13,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class StdIO {
-    private static Class<?> stdInClass = StdIn.class;
+    private static Class<?> stdInClass  = StdIn.class;
     private static Class<?> stdOutClass = StdOut.class;
-    private static Field scanner, printer;
+    private static Field    scanner, printer;
 
     static {
         try {
@@ -28,7 +28,8 @@ public class StdIO {
         }
     }
 
-    private static void execute(Executable execute, Executable beforeExecute, Executable afterExecute) throws Throwable {
+    private static void execute(Executable execute, Executable beforeExecute, Executable afterExecute) throws
+                                                                                                       Throwable {
         beforeExecute.execute();
         execute.execute();
         afterExecute.execute();

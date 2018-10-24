@@ -4,12 +4,12 @@ import edu.princeton.cs.algs4.Out;
 public class Wget {
 
     public static void main(String[] args) {
-        String url = args[0];
-        In in = new In(url);
+        String url  = args[0];
+        In     in   = new In(url);
         String data = in.readAll();
 
         String filename = url.substring(url.lastIndexOf('/') + 1);
-        Out out = new Out(filename);
+        Out    out      = new Out(filename);
         out.println(data);
         out.close();
     }

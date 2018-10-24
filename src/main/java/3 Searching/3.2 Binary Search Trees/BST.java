@@ -5,10 +5,10 @@ public class BST<Key extends Comparable<Key>, Value> implements OrderedSymbolTab
     Node root;
 
     class Node {
-        Key key;
+        Key   key;
         Value value;
-        int size;
-        Node left, right;
+        int   size;
+        Node  left, right;
 
         Node(Key key, Value value, int size) {
             this.key = key;

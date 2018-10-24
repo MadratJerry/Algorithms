@@ -4,8 +4,8 @@ public class ArrayST<Key, Value> implements BasicSymbolTable<Key, Value> {
     private static final int INIT_SIZE = 8;
 
     private Value[] values;   // symbol table values
-    private Key[] keys;     // symbol table keys
-    private int n = 0;      // number of elements in symbol table
+    private Key[]   keys;     // symbol table keys
+    private int     n = 0;      // number of elements in symbol table
 
     public ArrayST() {
         @SuppressWarnings("unchecked")

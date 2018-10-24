@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 
 public class FastCollinearPoints {
-    private final Point[] points;
+    private final Point[]                points;
     private final ArrayList<LineSegment> segments;
 
     public FastCollinearPoints(Point[] pointArray) {
@@ -21,8 +21,8 @@ public class FastCollinearPoints {
             Point[] points = this.points.clone();
             Arrays.sort(points, p.slopeOrder());
 
-            double previousSlope = Double.NaN;
-            LinkedList<Point> segment = new LinkedList<>();
+            double            previousSlope = Double.NaN;
+            LinkedList<Point> segment       = new LinkedList<>();
             for (int i = 1; i <= points.length; i++) {
                 int index = i % points.length;
                 if (p.slopeTo(points[index]) != previousSlope) {

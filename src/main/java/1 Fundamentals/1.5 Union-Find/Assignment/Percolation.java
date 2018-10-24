@@ -1,11 +1,11 @@
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
-    private final int n;
+    private final int                  n;
     private final WeightedQuickUnionUF uf, full;
-    private final int[][] dir = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
-    private int openCount = 0;
-    private boolean[][] grid;
+    private final int[][]     dir       = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+    private       int         openCount = 0;
+    private       boolean[][] grid;
 
     public Percolation(int n) {
         if (n <= 0) throw new IllegalArgumentException("n is expected to be greater than 0");

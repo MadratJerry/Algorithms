@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class BruteCollinearPoints {
-    private final Point[] points;
+    private final Point[]                points;
     private final ArrayList<LineSegment> segments;
 
     public BruteCollinearPoints(Point[] pointArray) {
@@ -20,14 +20,13 @@ public class BruteCollinearPoints {
             for (int j = i + 1; j < N; j++) {
                 for (int k = j + 1; k < N; k++) {
                     for (int l = k + 1; l < N; l++) {
-
                         Point point1 = points[i];
                         Point point2 = points[j];
                         Point point3 = points[k];
                         Point point4 = points[l];
 
                         if (point1.slopeTo(point2) == point2.slopeTo(point3)
-                                && point2.slopeTo(point3) == point3.slopeTo(point4)) {
+                            && point2.slopeTo(point3) == point3.slopeTo(point4)) {
                             segments.add(new LineSegment(point1, point4));
                         }
                     }

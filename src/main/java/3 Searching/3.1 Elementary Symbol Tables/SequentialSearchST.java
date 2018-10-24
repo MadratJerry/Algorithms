@@ -5,12 +5,12 @@ import java.util.LinkedList;
 
 public class SequentialSearchST<Key, Value> implements BasicSymbolTable<Key, Value> {
     private Node first;
-    private int n;
+    private int  n;
 
     private class Node {
-        Key key;
+        Key   key;
         Value value;
-        Node next;
+        Node  next;
 
         Node(Key key, Value value, Node next) {
             this.key = key;

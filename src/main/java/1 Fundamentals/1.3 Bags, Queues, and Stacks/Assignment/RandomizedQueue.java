@@ -4,14 +4,17 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class RandomizedQueue<Item> implements Iterable<Item> {
-    private int size;
+    private int    size;
     private Item[] array;
 
     public RandomizedQueue() {
-        array = (Item[]) new Object[2];
+        @SuppressWarnings("unchecked")
+        Item[] items = (Item[]) new Object[2];
+        array = items;
     }
 
     private void resize(int size) {
+        @SuppressWarnings("unchecked")
         Item[] tempArray = (Item[]) new Object[size];
         System.arraycopy(array, 0, tempArray, 0, this.size);
         array = tempArray;
@@ -36,8 +39,8 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     public Item dequeue() {
         if (isEmpty()) throw new NoSuchElementException("Queue is empty.");
 
-        int index = StdRandom.uniform(size);
-        Item item = array[index];
+        int  index = StdRandom.uniform(size);
+        Item item  = array[index];
         array[index] = array[size - 1];
         array[size-- - 1] = null;
         if (size > 0 && size == array.length / 4) resize(size * 2);
@@ -62,7 +65,9 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         public RandomizedArrayIterator() {
             rq = new RandomizedQueue<>();
             rq.size = size;
-            rq.array = (Item[]) new Object[array.length];
+            @SuppressWarnings("unchecked")
+            Item[] items = (Item[]) new Object[2];
+            rq.array = items;
             System.arraycopy(array, 0, rq.array, 0, size);
         }
 

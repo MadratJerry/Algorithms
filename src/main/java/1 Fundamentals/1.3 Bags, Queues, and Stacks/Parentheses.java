@@ -20,8 +20,8 @@ public class Parentheses {
     }
 
     public static void main(String[] args) {
-        In in = new In();
-        String s = in.readAll().trim();
+        In     in = new In();
+        String s  = in.readAll().trim();
         StdOut.println(isBalanced(s));
     }
 }

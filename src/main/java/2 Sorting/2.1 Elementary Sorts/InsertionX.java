@@ -13,7 +13,7 @@ public class InsertionX extends Sort {
 
         for (int i = 2; i < a.length; i++) {
             Comparable v = a[i];
-            int j = i;
+            int        j = i;
             while (less(v, a[j - 1])) {
                 a[j] = a[j - 1];
                 j--;

@@ -7,8 +7,8 @@ public class BouncingBall {
         StdDraw.setYscale(-1.0, 1.0);
         StdDraw.enableDoubleBuffering();
 
-        double rx = 0.480, ry = 0.860;
-        double vx = 0.015, vy = 0.023;
+        double rx     = 0.480, ry = 0.860;
+        double vx     = 0.015, vy = 0.023;
         double radius = 0.05;
 
         while (true) {

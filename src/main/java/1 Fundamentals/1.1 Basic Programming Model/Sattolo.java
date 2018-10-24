@@ -6,7 +6,7 @@ public class Sattolo {
 
     public static void cycle(Object[] a) {
         for (int i = a.length; i > 1; i--) {
-            int r = StdRandom.uniform(i - 1);
+            int    r    = StdRandom.uniform(i - 1);
             Object temp = a[r];
             a[r] = a[i - 1];
             a[i - 1] = temp;

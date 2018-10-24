@@ -23,8 +23,8 @@ public class Solver {
 
     public static void main(String[] args) {
         // create initial board from file
-        In in = new In(args[0]);
-        int n = in.readInt();
+        In      in     = new In(args[0]);
+        int     n      = in.readInt();
         int[][] blocks = new int[n][n];
         for (int i = 0; i < n; i++)
             for (int j = 0; j < n; j++)
@@ -74,10 +74,10 @@ public class Solver {
     }
 
     private class Node implements Comparable<Node> {
-        private Node previous;
+        private Node  previous;
         private Board board;
-        private int moves = 0;
-        private int priority = 0;
+        private int   moves    = 0;
+        private int   priority = 0;
 
         public Node(Board board) {
             this.board = board;

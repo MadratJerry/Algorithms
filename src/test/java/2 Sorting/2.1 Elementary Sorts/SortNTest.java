@@ -24,7 +24,7 @@ class SortNTest {
     private static HashMap<String[], String> testMap(int n) {
         HashMap<String[], String> map = new HashMap<>();
         for (int i = 0; i < Math.pow(2, n); i++) {
-            int num = i, index = 0;
+            int      num   = i, index = 0;
             String[] array = SortNTest.getArray(n);
             while (num != 0) {
                 array[index++] = num % 2 + "";
@@ -38,25 +38,26 @@ class SortNTest {
     @TestFactory
     Stream<DynamicTest> dynamicSortNTest() {
         return Stream.of(3, 4, 5, 6)
-                .map(index -> dynamicTest(String.format("Sort%dTest", index), () -> {
-                    Map<String[], String> map = SortNTest.testMap(index);
-                    map.forEach((array, result) ->
-                            assertEquals(
-                                    captureOutput(
-                                            () -> {
-                                                try {
-                                                    Class sortClass = Class.forName("Sort" + index);
-                                                    @SuppressWarnings("unchecked")
-                                                    Method mainMethod = sortClass.getMethod("main", String[].class);
-                                                    mainMethod.invoke(sortClass, new Object[]{array});
-                                                } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-                                                    e.printStackTrace();
-                                                }
-                                            }
-                                    ),
-                                    result
-                            ));
-                }));
+                     .map(index -> dynamicTest(String.format("Sort%dTest", index), () -> {
+                         Map<String[], String> map = SortNTest.testMap(index);
+                         map.forEach((array, result) ->
+                                             assertEquals(
+                                                     captureOutput(
+                                                             () -> {
+                                                                 try {
+                                                                     Class sortClass = Class.forName("Sort" + index);
+                                                                     @SuppressWarnings("unchecked")
+                                                                     Method mainMethod = sortClass.getMethod("main",
+                                                                                                             String[].class);
+                                                                     mainMethod.invoke(sortClass, new Object[]{array});
+                                                                 } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+                                                                     e.printStackTrace();
+                                                                 }
+                                                             }
+                                                     ),
+                                                     result
+                                             ));
+                     }));
     }
 
 }

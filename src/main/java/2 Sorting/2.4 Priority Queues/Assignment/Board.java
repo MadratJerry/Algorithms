@@ -26,8 +26,8 @@ public class Board {
         for (int i = 0; i < dimension(); i++)
             for (int j = 0; j < dimension(); j++)
                 sum += blocks[i][j] == 0 ? 0 :
-                        Math.abs(i - (blocks[i][j] - 1) / dimension()) +
-                                Math.abs(j - (blocks[i][j] - 1) % dimension());
+                       Math.abs(i - (blocks[i][j] - 1) / dimension()) +
+                       Math.abs(j - (blocks[i][j] - 1) % dimension());
         return sum;
     }
 
