@@ -1,6 +1,6 @@
 public class RedBlackBST<Key extends Comparable<Key>, Value> implements OrderedSymbolTable<Key, Value> {
     private final static boolean BLACK = false;
-    private final static boolean RED   = false;
+    private final static boolean RED   = true;
 
     private Node root;
 
@@ -33,6 +33,8 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> implements OrderedS
 
         root = put(root, key, value);
         root.color = BLACK;
+
+        assert is23();
     }
 
     private Node put(Node node, Key key, Value value) {
@@ -93,6 +95,19 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> implements OrderedS
             else return node.value;
         }
         return null;
+    }
+
+    private boolean is23() {
+        return is23(root);
+    }
+
+    private boolean is23(Node node) {
+        if (node == null) return true;
+
+        if (isRed(node.left) && isRed(node.left.left)) return false;
+        if (isRed(node.right)) return false;
+
+        return is23(node.left) && is23(node.right);
     }
 
     @Override
