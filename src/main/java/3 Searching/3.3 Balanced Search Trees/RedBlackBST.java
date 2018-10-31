@@ -23,8 +23,52 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> implements OrderedS
         if (key == null) throw new IllegalArgumentException("The argument key is null");
     }
 
+    private boolean isRedBlackBST() {
+        return is23() && isBalanced();
+    }
+
     private boolean isRed(Node node) {
         return node != null && node.color == RED;
+    }
+
+    private boolean is23() {
+        return is23(root);
+    }
+
+    private boolean is23(Node node) {
+        if (node == null) return true;
+
+        if (isRed(node.left) && isRed(node.left.left)) return false;
+        if (isRed(node.right)) return false;
+
+        return is23(node.left) && is23(node.right);
+    }
+
+    private boolean isBalanced() {
+        int  black = 0;
+        Node node  = root;
+        while (node != null) {
+            if (!isRed(node)) black++;
+            node = node.left;
+        }
+        return isBalanced(root, black);
+    }
+
+    private boolean isBalanced(Node node, int black) {
+        if (node == null) return black == 0;
+        if (!isRed(node)) black--;
+        return isBalanced(node.left, black) && isBalanced(node.right, black);
+    }
+
+    private boolean isBST() {
+        return isBST(root, null, null);
+    }
+
+    private boolean isBST(Node node, Key min, Key max) {
+        if (node == null) return true;
+        if (min != null && node.key.compareTo(min) <= 0) return false;
+        if (max != null && node.key.compareTo(max) >= 0) return false;
+        return isBST(node.left, min, node.key) && isBST(node.right, node.key, max);
     }
 
     @Override
@@ -34,7 +78,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> implements OrderedS
         root = put(root, key, value);
         root.color = BLACK;
 
-        assert is23();
+        assert isRedBlackBST();
     }
 
     private Node put(Node node, Key key, Value value) {
@@ -95,19 +139,6 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> implements OrderedS
             else return node.value;
         }
         return null;
-    }
-
-    private boolean is23() {
-        return is23(root);
-    }
-
-    private boolean is23(Node node) {
-        if (node == null) return true;
-
-        if (isRed(node.left) && isRed(node.left.left)) return false;
-        if (isRed(node.right)) return false;
-
-        return is23(node.left) && is23(node.right);
     }
 
     @Override
