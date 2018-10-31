@@ -21,11 +21,46 @@ public class BST<Key extends Comparable<Key>, Value> implements OrderedSymbolTab
         if (key == null) throw new IllegalArgumentException("The argument key is null");
     }
 
+    private boolean check() {
+        return isBST() && isSizeConsistent() && isRankConsistent();
+    }
+
+    private boolean isBST() {
+        return isBST(root, null, null);
+    }
+
+    private boolean isBST(Node node, Key min, Key max) {
+        if (node == null) return true;
+        if (min != null && node.key.compareTo(min) <= 0) return false;
+        if (max != null && node.key.compareTo(max) >= 0) return false;
+        return isBST(node.left, min, node.key) && isBST(node.right, node.key, max);
+    }
+
+    private boolean isSizeConsistent() {
+        return isSizeConsistent(root);
+    }
+
+    private boolean isSizeConsistent(Node node) {
+        if (node == null) return true;
+        return node.size == size(node.left) + size(node.right) + 1
+               && isSizeConsistent(node.left) && isSizeConsistent(node.right);
+    }
+
+    private boolean isRankConsistent() {
+        for (int i = 0; i < size(); i++)
+            if (i != rank(select(i))) return false;
+        for (Key key : keys())
+            if (key.compareTo(select(rank(key))) != 0) return false;
+        return true;
+    }
+
     @Override
     public void put(Key key, Value value) {
         checkKey(key);
 
         root = put(root, key, value);
+
+        assert check();
     }
 
     private Node put(Node node, Key key, Value value) {
@@ -63,6 +98,8 @@ public class BST<Key extends Comparable<Key>, Value> implements OrderedSymbolTab
         checkKey(key);
 
         root = delete(root, key);
+
+        assert check();
     }
 
     private Node delete(Node node, Key key) {
@@ -205,6 +242,8 @@ public class BST<Key extends Comparable<Key>, Value> implements OrderedSymbolTab
     @Override
     public void deleteMin() {
         root = deleteMin(root);
+
+        assert check();
     }
 
     private Node deleteMin(Node node) {
@@ -217,6 +256,8 @@ public class BST<Key extends Comparable<Key>, Value> implements OrderedSymbolTab
     @Override
     public void deleteMax() {
         root = deleteMax(root);
+
+        assert check();
     }
 
     private Node deleteMax(Node node) {
