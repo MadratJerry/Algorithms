@@ -9,6 +9,7 @@ public class KdTree {
     private              int     size;
     private static final boolean VERTICAL   = true;
     private static final boolean HORIZONTAL = false;
+    private static final RectHV  originRect = new RectHV(0, 0, 1, 1);
 
     private static class Node {
         private Point2D p;
@@ -16,9 +17,14 @@ public class KdTree {
         private Node    lb;
         private Node    rt;
 
-        public Node(Point2D p) {
+        public Node(Point2D p, RectHV rect) {
             this.p = p;
+            this.rect = rect;
         }
+    }
+
+    private void checkNull(Object obj) {
+        if (obj == null) throw new IllegalArgumentException();
     }
 
     public boolean isEmpty() {
@@ -27,31 +33,35 @@ public class KdTree {
 
     public int size() {return size;}
 
-    public void insert(Point2D p) {
-        if (p == null) throw new IllegalArgumentException();
-        root = insert(root, p, VERTICAL);
+    private int compare(Point2D o1, Point2D o2, boolean orientation) {
+        return orientation == VERTICAL ?
+               Double.compare(o1.x(), o2.x()) :
+               Double.compare(o1.y(), o2.y());
     }
 
-    private Node insert(Node node, Point2D p, boolean orientation) {
+    public void insert(Point2D p) {
+        checkNull(p);
+        root = insert(root, p, originRect, VERTICAL);
+    }
+
+    private Node insert(Node node, Point2D p, RectHV rect, boolean orientation) {
         if (node == null) {
             size++;
-            return new Node(p);
+            return new Node(p, rect);
         }
 
         if (node.p.equals(p)) return node;
-
-        if (orientation == VERTICAL && p.x() < node.p.x() ||
-            orientation == HORIZONTAL && p.y() < node.p.y()) {
-            node.lb = insert(node.lb, p, !orientation);
-        } else {
-            node.rt = insert(node.rt, p, !orientation);
-        }
+        int cmp = compare(p, node.p, orientation);
+        if (cmp < 0) node.lb = insert(node.lb, p,
+                                      node.lb == null ? lbRect(node.rect, node, orientation) : node.rect, !orientation);
+        else node.rt = insert(node.rt, p,
+                              node.rt == null ? rtRect(node.rect, node, orientation) : node.rect, !orientation);
 
         return node;
     }
 
     public boolean contains(Point2D p) {
-        if (p == null) return false;
+        checkNull(p);
         return contains(root, p, VERTICAL);
     }
 
@@ -71,14 +81,14 @@ public class KdTree {
         StdDraw.setPenColor(StdDraw.BLACK);
         StdDraw.setPenRadius();
 
-        RectHV rect = new RectHV(0, 0, 1, 1);
-        rect.draw();
-        draw(root, rect, VERTICAL);
+        originRect.draw();
+        draw(root, VERTICAL);
     }
 
-    private void draw(Node node, RectHV rect, boolean orientation) {
+    private void draw(Node node, boolean orientation) {
         if (node == null) return;
 
+        RectHV rect = node.rect;
         // draw splitting line
         StdDraw.setPenRadius();
         if (orientation == VERTICAL) {
@@ -94,8 +104,8 @@ public class KdTree {
         StdDraw.setPenRadius(0.01);
         StdDraw.point(node.p.x(), node.p.y());
 
-        draw(node.lb, lbRect(rect, node, orientation), !orientation);
-        draw(node.rt, rtRect(rect, node, orientation), !orientation);
+        draw(node.lb, !orientation);
+        draw(node.rt, !orientation);
     }
 
     private RectHV lbRect(RectHV rect, Node node, boolean orientation) {
@@ -111,51 +121,39 @@ public class KdTree {
     }
 
     public Iterable<Point2D> range(RectHV rect) {
-        if (rect == null) throw new IllegalArgumentException();
+        checkNull(rect);
 
         final TreeSet<Point2D> rangeSet = new TreeSet<>();
-        range(root, new RectHV(0, 0, 1, 1), rect, rangeSet, VERTICAL);
+        range(root, rect, rangeSet, VERTICAL);
         return rangeSet;
     }
 
-    private void range(Node node, RectHV splitRect, RectHV rect, TreeSet<Point2D> rangeSet, boolean orientation) {
+    private void range(Node node, RectHV rect, TreeSet<Point2D> rangeSet, boolean orientation) {
         if (node == null) return;
 
+        RectHV splitRect = node.rect;
         if (rect.intersects(splitRect)) {
-            final Point2D p = new Point2D(node.p.x(), node.p.y());
-            if (rect.contains(p)) rangeSet.add(p);
+            final Point2D p = node.p;
+            if (rect.contains(p)) rangeSet.add(new Point2D(node.p.x(), node.p.y()));
 
             if (orientation == VERTICAL) {
-                if (splitRect.xmax() < p.x())
-                    range(node.lb, lbRect(splitRect, node, orientation), rect, rangeSet, !orientation);
-                if (splitRect.xmin() > p.x())
-                    range(node.rt, rtRect(splitRect, node, orientation), rect, rangeSet, !orientation);
-                if (splitRect.contains(p)) {
-                    range(node.lb, lbRect(splitRect, node, orientation), rect, rangeSet, !orientation);
-                    range(node.rt, rtRect(splitRect, node, orientation), rect, rangeSet, !orientation);
-                }
+                if (splitRect.xmax() >= p.x()) range(node.rt, rect, rangeSet, !orientation);
+                if (splitRect.xmin() <= p.x()) range(node.lb, rect, rangeSet, !orientation);
             } else {
-                if (splitRect.ymax() < p.y())
-                    range(node.lb, lbRect(splitRect, node, orientation), rect, rangeSet, !orientation);
-                if (splitRect.ymin() > p.y())
-                    range(node.rt, rtRect(splitRect, node, orientation), rect, rangeSet, !orientation);
-                if (splitRect.contains(p)) {
-                    range(node.lb, lbRect(splitRect, node, orientation), rect, rangeSet, !orientation);
-                    range(node.rt, rtRect(splitRect, node, orientation), rect, rangeSet, !orientation);
-                }
+                if (splitRect.ymax() >= p.y()) range(node.rt, rect, rangeSet, !orientation);
+                if (splitRect.ymin() <= p.y()) range(node.lb, rect, rangeSet, !orientation);
             }
         }
     }
 
     public Point2D nearest(Point2D p) {
-        if (p == null) throw new IllegalArgumentException();
+        checkNull(p);
         if (isEmpty()) return null;
 
-        return nearest(root, p, root.p, p.distanceSquaredTo(root.p), new RectHV(0, 0, 1, 1), VERTICAL);
+        return nearest(root, p, root.p, p.distanceSquaredTo(root.p), VERTICAL);
     }
 
-    private Point2D nearest(Node node, Point2D p, Point2D minPoint, double minDistance, RectHV rect,
-                            boolean orientation) {
+    private Point2D nearest(Node node, Point2D p, Point2D minPoint, double minDistance, boolean orientation) {
         if (node == null) return minPoint;
 
         double distance = p.distanceSquaredTo(node.p);
@@ -164,21 +162,18 @@ public class KdTree {
             minPoint = node.p;
         }
 
-        int cmp = orientation == VERTICAL ?
-                  Double.compare(p.x(), node.p.x()) :
-                  Double.compare(p.y(), node.p.y());
-        if (cmp < 0) minPoint = nearest(node.lb, p, minPoint, minDistance, lbRect(rect, node, orientation),
-                                        !orientation);
-        else minPoint = nearest(node.rt, p, minPoint, minDistance, rtRect(rect, node, orientation), !orientation);
+        int cmp = compare(p, node.p, orientation);
+        if (cmp < 0) minPoint = nearest(node.lb, p, minPoint, minDistance, !orientation);
+        else minPoint = nearest(node.rt, p, minPoint, minDistance, !orientation);
 
         minDistance = minPoint.distanceSquaredTo(p);
 
         if (cmp < 0) {
-            if (rtRect(rect, node, orientation).distanceSquaredTo(p) <= minDistance)
-                minPoint = nearest(node.rt, p, minPoint, minDistance, rtRect(rect, node, orientation), !orientation);
+            if (node.rt != null && node.rt.rect.distanceSquaredTo(p) <= minDistance)
+                minPoint = nearest(node.rt, p, minPoint, minDistance, !orientation);
         } else {
-            if (lbRect(rect, node, orientation).distanceSquaredTo(p) <= minDistance)
-                minPoint = nearest(node.lb, p, minPoint, minDistance, lbRect(rect, node, orientation), !orientation);
+            if (node.lb != null && node.lb.rect.distanceSquaredTo(p) <= minDistance)
+                minPoint = nearest(node.lb, p, minPoint, minDistance, !orientation);
         }
 
         return minPoint;
