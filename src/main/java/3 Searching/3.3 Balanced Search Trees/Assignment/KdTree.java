@@ -2,8 +2,6 @@ import edu.princeton.cs.algs4.Point2D;
 import edu.princeton.cs.algs4.RectHV;
 import edu.princeton.cs.algs4.StdDraw;
 
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.TreeSet;
 
 public class KdTree {
@@ -31,7 +29,7 @@ public class KdTree {
 
     public void insert(Point2D p) {
         if (p == null) throw new IllegalArgumentException();
-        root = insert(root, p, true);
+        root = insert(root, p, VERTICAL);
     }
 
     private Node insert(Node node, Point2D p, boolean orientation) {
@@ -59,11 +57,13 @@ public class KdTree {
 
     private boolean contains(Node node, Point2D p, boolean orientation) {
         if (node == null) return false;
-        int cmp = orientation == VERTICAL ? Double.compare(p.x(), node.p.x()) :
+        if (node.p.equals(p)) return true;
+
+        int cmp = orientation == VERTICAL ?
+                  Double.compare(p.x(), node.p.x()) :
                   Double.compare(p.y(), node.p.y());
         if (cmp < 0) return contains(node.lb, p, !orientation);
-        else if (cmp > 0) return contains(node.rt, p, !orientation);
-        else return true;
+        else return contains(node.rt, p, !orientation);
     }
 
     public void draw() {
@@ -127,21 +127,21 @@ public class KdTree {
 
             if (orientation == VERTICAL) {
                 if (splitRect.xmax() < p.x())
-                    range(node.lb, lbRect(splitRect, node, orientation), rect, rangeSet, orientation);
-                if (splitRect.xmax() > p.x())
-                    range(node.rt, rtRect(splitRect, node, orientation), rect, rangeSet, orientation);
+                    range(node.lb, lbRect(splitRect, node, orientation), rect, rangeSet, !orientation);
+                if (splitRect.xmin() > p.x())
+                    range(node.rt, rtRect(splitRect, node, orientation), rect, rangeSet, !orientation);
                 if (splitRect.contains(p)) {
-                    range(node.lb, lbRect(splitRect, node, orientation), rect, rangeSet, orientation);
-                    range(node.rt, rtRect(splitRect, node, orientation), rect, rangeSet, orientation);
+                    range(node.lb, lbRect(splitRect, node, orientation), rect, rangeSet, !orientation);
+                    range(node.rt, rtRect(splitRect, node, orientation), rect, rangeSet, !orientation);
                 }
             } else {
                 if (splitRect.ymax() < p.y())
-                    range(node.lb, lbRect(splitRect, node, orientation), rect, rangeSet, orientation);
-                if (splitRect.ymax() > p.y())
-                    range(node.rt, rtRect(splitRect, node, orientation), rect, rangeSet, orientation);
+                    range(node.lb, lbRect(splitRect, node, orientation), rect, rangeSet, !orientation);
+                if (splitRect.ymin() > p.y())
+                    range(node.rt, rtRect(splitRect, node, orientation), rect, rangeSet, !orientation);
                 if (splitRect.contains(p)) {
-                    range(node.lb, lbRect(splitRect, node, orientation), rect, rangeSet, orientation);
-                    range(node.rt, rtRect(splitRect, node, orientation), rect, rangeSet, orientation);
+                    range(node.lb, lbRect(splitRect, node, orientation), rect, rangeSet, !orientation);
+                    range(node.rt, rtRect(splitRect, node, orientation), rect, rangeSet, !orientation);
                 }
             }
         }
@@ -151,23 +151,36 @@ public class KdTree {
         if (p == null) throw new IllegalArgumentException();
         if (isEmpty()) return null;
 
+        return nearest(root, p, root.p, p.distanceSquaredTo(root.p), new RectHV(0, 0, 1, 1), VERTICAL);
+    }
 
-        Point2D     result = null;
-        double      min    = Double.MAX_VALUE;
-        Queue<Node> queue  = new LinkedList<>();
-        queue.offer(root);
-        while (!queue.isEmpty()) {
-            Node   node     = queue.remove();
-            double distance = p.distanceSquaredTo(node.p);
-            if (distance < min) {
-                result = node.p;
-                min = distance;
-            }
-            if (node.lb != null && node.lb.p.distanceSquaredTo(p) < min)
-                queue.offer(node.lb);
-            if (node.rt != null && node.rt.p.distanceSquaredTo(p) < min)
-                queue.offer(node.rt);
+    private Point2D nearest(Node node, Point2D p, Point2D minPoint, double minDistance, RectHV rect,
+                            boolean orientation) {
+        if (node == null) return minPoint;
+
+        double distance = p.distanceSquaredTo(node.p);
+        if (distance < minDistance) {
+            minDistance = distance;
+            minPoint = node.p;
         }
-        return result;
+
+        int cmp = orientation == VERTICAL ?
+                  Double.compare(p.x(), node.p.x()) :
+                  Double.compare(p.y(), node.p.y());
+        if (cmp < 0) minPoint = nearest(node.lb, p, minPoint, minDistance, lbRect(rect, node, orientation),
+                                        !orientation);
+        else minPoint = nearest(node.rt, p, minPoint, minDistance, rtRect(rect, node, orientation), !orientation);
+
+        minDistance = minPoint.distanceSquaredTo(p);
+
+        if (cmp < 0) {
+            if (rtRect(rect, node, orientation).distanceSquaredTo(p) <= minDistance)
+                minPoint = nearest(node.rt, p, minPoint, minDistance, rtRect(rect, node, orientation), !orientation);
+        } else {
+            if (lbRect(rect, node, orientation).distanceSquaredTo(p) <= minDistance)
+                minPoint = nearest(node.lb, p, minPoint, minDistance, lbRect(rect, node, orientation), !orientation);
+        }
+
+        return minPoint;
     }
 }
