@@ -12,3 +12,12 @@
    - 2.4 [Priority Queues](src/main/java/2%20Sorting/2.4%20Priority%20Queues)
 3. [**Searching**](src/main/java/3%20Searching)
    - 3.1 [Elementary Symbol Tables](src/main/java/3%20Searching/3.1%20Elementary%20Symbol%20Tables)
+   - 3.2 [Binary Search Trees](src/main/java/3%20Searching/3.2%20Binary%20Search%20Trees)
+   - 3.3 [Balanced Search Trees](src/main/java/3%20Searching/3.3%20Balanced%20Search%20Trees)
+   
+- [Assignments](src/main/java/Assignments)
+   - [8 Puzzle](src/main/java/Assignments/8%20Puzzle)
+   - [Collinear Points](src/main/java/Assignments/Collinear%20Points)
+   - [Deques and Randomized Queues](src/main/java/Assignments/Deques%20and%20Randomized%20Queues)
+   - [Kd-Trees](src/main/java/Assignments/Kd-Trees)
+   - [Percolation](src/main/java/Assignments/Percolation)
