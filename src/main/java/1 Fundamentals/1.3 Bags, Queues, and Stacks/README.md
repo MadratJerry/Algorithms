@@ -24,12 +24,6 @@
 
    It's due to type erasure. Java's Generics type parameter is the compile time information. It's erased in runtime, so a List<String> is erased to List. All the generic type of List share the common class List.class. While java's array is different, different type of array has its own class, for example , String[] and Integer[] have two different class. To determine an array's class type, we need the component type which is the type of the array element which is returned by Class.getComponentType method.
 
-## Programming Assignment: Deques and Randomized Queues
-
-- [specification](http://coursera.cs.princeton.edu/algs4/assignments/queues.html)
-- [checklist](http://coursera.cs.princeton.edu/algs4/checklists/queues.html)
-- [code](Assignment)
-
 ## Exercises
 
 _4._ Write a stack client [Parentheses.java](Parentheses.java) that reads in sequence of left and right parentheses, braces, and brackets from standard input and uses a stack to determine whether the sequence is properly balanced. For example, your program should print true for [()]{}{[()()]()} and false for [(]). 

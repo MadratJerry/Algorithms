@@ -25,17 +25,11 @@ test {
 file('src/main/java').eachDir {
     it.eachDirRecurse {
         sourceSets.main.java.srcDirs += it
-        it.eachDirMatch(~/Assignment/) {
-            sourceSets.main.java.srcDirs += it
-        }
     }
 }
 
 file('src/test/java').eachDir {
     it.eachDirRecurse {
         sourceSets.test.java.srcDirs += it
-        it.eachDirMatch(~/Assignment/) {
-            sourceSets.test.java.srcDirs += it
-        }
     }
 }

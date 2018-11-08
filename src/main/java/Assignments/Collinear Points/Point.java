@@ -12,15 +12,6 @@ public class Point implements Comparable<Point> {
         this.y = y;
     }
 
-    public static void main(String[] args) {
-        Point p = new Point(83, 138);
-        Point q = new Point(471, 108);
-        Point r = new Point(308, 53);
-        StdOut.println(p.slopeOrder().compare(q, r));
-        StdOut.println(p.slopeTo(q));
-        StdOut.println(p.slopeTo(r));
-    }
-
     public void draw() {
         StdDraw.point(x, y);
     }
@@ -56,5 +47,14 @@ public class Point implements Comparable<Point> {
 
     public Comparator<Point> slopeOrder() {
         return Comparator.comparingDouble(this::slopeTo);
+    }
+
+    public static void main(String[] args) {
+        Point p = new Point(83, 138);
+        Point q = new Point(471, 108);
+        Point r = new Point(308, 53);
+        StdOut.println(p.slopeOrder().compare(q, r));
+        StdOut.println(p.slopeTo(q));
+        StdOut.println(p.slopeTo(r));
     }
 }
