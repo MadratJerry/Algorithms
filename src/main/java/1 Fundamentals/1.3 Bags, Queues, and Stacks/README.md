@@ -1,6 +1,6 @@
 # 1.3 [Bags, Queues, and Stacks](https://algs4.cs.princeton.edu/13stacks/)
 
-## Practice Quiz
+## Interview Questions
 
 1. **Queue with two stacks.** Implement a queue with two stacks so that each queue operations takes a constant amortized number of stack operations.
 
@@ -26,7 +26,6 @@
 
 ## Exercises
 
-_4._ Write a stack client [Parentheses.java](Parentheses.java) that reads in sequence of left and right parentheses, braces, and brackets from standard input and uses a stack to determine whether the sequence is properly balanced. For example, your program should print true for [()]{}{[()()]()} and false for [(]). 
+_1.3.4_ Write a stack client [Parentheses.java](https://algs4.cs.princeton.edu/13stacks/Parentheses.java.html) that reads in sequence of left and right parentheses, braces, and brackets from standard input and uses a stack to determine whether the sequence is properly balanced. For example, your program should print true for [()]{}{[()()]()} and false for [(]). 
 
-[//]: #
-(TODO Creative Problems)
+_1.3.7_ Add a method peek to [Stack.java](https://algs4.cs.princeton.edu/13stacks/Stack.java.html) that returns the most recently inserted item on the stack (without popping it).
