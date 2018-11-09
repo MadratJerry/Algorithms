@@ -26,6 +26,14 @@
 
 ## Exercises
 
-_1.3.4_ Write a stack client [Parentheses.java](https://algs4.cs.princeton.edu/13stacks/Parentheses.java.html) that reads in sequence of left and right parentheses, braces, and brackets from standard input and uses a stack to determine whether the sequence is properly balanced. For example, your program should print true for [()]{}{[()()]()} and false for [(]). 
+_1.3.4_ Write a stack client [Parentheses.java](https://algs4.cs.princeton.edu/13stacks/Parentheses.java.html) that reads in sequence of left and right parentheses, braces, and brackets from standard input and uses a stack to determine whether the sequence is properly balanced. For example, your program should print true for `[()]{}{[()()]()}` and false for `[(])`. 
+
+Solution: [Parentheses.java](Parentheses.java)
 
 _1.3.7_ Add a method peek to [Stack.java](https://algs4.cs.princeton.edu/13stacks/Stack.java.html) that returns the most recently inserted item on the stack (without popping it).
+
+Solution: [Stack.java](Stack.java)
+
+_1.3.14_ Develop a class `ResizingArrayQueueOfStrings` that implements the queue abstraction with a fixed-size array, and then extend your implementation to use array resizing to remove the size restriction.
+
+Solution: [ResizingArrayQueue.java](ResizingArrayQueue.java)

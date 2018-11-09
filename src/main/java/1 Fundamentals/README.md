@@ -33,9 +33,9 @@ The objective of this book is to study a broad variety of important and useful a
 |✅|[ResizingArrayStack.java](1.3%20Bags,%20Queues,%20and%20Stacks/ResizingArrayStack.java)|LIFO stack (resizing array)|
 |✅|[LinkedStack.java](1.3%20Bags,%20Queues,%20and%20Stacks/LinkedStack.java)|LIFO stack (linked list)|
 |✅|[Stack.java](1.3%20Bags,%20Queues,%20and%20Stacks/Stack.java)|LIFO stack|
-|➖|ResizingArrayQueue.java|FIFO queue (resizing array)|
-|➖|LinkedQueue.java|FIFO queue (linked list)|
-|➖|Queue.java|FIFO queue|
+|✅|[ResizingArrayQueue.java](1.3%20Bags,%20Queues,%20and%20Stacks/ResizingArrayQueue.java)|FIFO queue (resizing array)|
+|✅|[LinkedQueue.java](1.3%20Bags,%20Queues,%20and%20Stacks/LinkedQueue.java)|FIFO queue (linked list)|
+|✅|[Queue.java](1.3%20Bags,%20Queues,%20and%20Stacks/Queue.java)|FIFO queue|
 |➖|ResizingArrayBag.java|multiset (resizing array)|
 |➖|LinkedBag.java|multiset (linked list)|
 |➖|Bag.java|multiset|
