@@ -59,7 +59,7 @@ public class ResizingArrayStack<Item> implements IStack<Item> {
         private int count = size;
 
         @Override
-        public boolean hasNext() { return size >= 0; }
+        public boolean hasNext() { return count >= 0; }
 
         @Override
         public void remove() { throw new UnsupportedOperationException(); }
