@@ -11,7 +11,7 @@ public class LinkedQueue<Item> implements IQueue<Item> {
         Node next;
     }
 
-    LinkedQueue() {
+    public LinkedQueue() {
         first = last = null;
         size = 0;
     }

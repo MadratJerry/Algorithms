@@ -6,7 +6,7 @@ public class ResizingArrayQueue<Item> implements IQueue<Item> {
     private int    size;
     private int    first, last;
 
-    ResizingArrayQueue() {
+    public ResizingArrayQueue() {
         @SuppressWarnings("unchecked")
         Item[] array = (Item[]) new Object[2];
         this.array = array;
@@ -14,11 +14,12 @@ public class ResizingArrayQueue<Item> implements IQueue<Item> {
     }
 
     private void resize(int capacity) {
-        assert capacity <= size;
+        assert capacity >= size;
         @SuppressWarnings("unchecked")
-        Item[] tempArray = (Item[]) new Object[size];
+        Item[] tempArray = (Item[]) new Object[capacity];
         System.arraycopy(array, 0, tempArray, 0, this.size);
         array = tempArray;
+        last = (last + size) % array.length;
     }
 
     @Override
@@ -60,7 +61,7 @@ public class ResizingArrayQueue<Item> implements IQueue<Item> {
     }
 
     private class ArrayIterator implements Iterator<Item> {
-        private int count = size;
+        private int count = 0;
 
         @Override
         public boolean hasNext() { return count < size; }
