@@ -13,9 +13,9 @@ public class ResizingArrayStack<Item> implements IStack<Item> {
     }
 
     private void resize(int capacity) {
-        assert capacity <= size;
+        assert capacity >= size;
         @SuppressWarnings("unchecked")
-        Item[] tempArray = (Item[]) new Object[size];
+        Item[] tempArray = (Item[]) new Object[capacity];
         System.arraycopy(array, 0, tempArray, 0, this.size);
         array = tempArray;
     }
@@ -59,7 +59,7 @@ public class ResizingArrayStack<Item> implements IStack<Item> {
         private int count = size;
 
         @Override
-        public boolean hasNext() { return count >= 0; }
+        public boolean hasNext() { return count > 0; }
 
         @Override
         public void remove() { throw new UnsupportedOperationException(); }
