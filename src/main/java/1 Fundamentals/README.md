@@ -46,7 +46,7 @@ The objective of this book is to study a broad variety of important and useful a
 |✅|[ThreeSumFast.java](1.4%20Analysis%20of%20Algorithms/ThreeSumFast.java)|faster three sum|
 |➖|DoublingTest.java|doubling test|
 |➖|DoublingRatio.java|doubling ratio|
-|➖|QuickFindUF.java|quick find|
-|➖|QuickUnionUF.java|quick union|
+|✅|[QuickFindUF.java](1.5%20Union-Find/QuickFindUF.java)|quick find|
+|✅|[QuickUnionUF.java](1.5%20Union-Find/QuickUnionUF.java)|quick union|
 |➖|WeightedQuickUnionUF.java|weighted quick union|
 |➖|UF.java|union-by-rank with path halving|
