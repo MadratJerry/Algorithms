@@ -1,4 +1,4 @@
-public class UF extends QuickUnionUF {
+public class UF extends WeightedQuickUnionByHeightUF {
     private byte[] rank;
 
     public UF(int n) {
@@ -7,17 +7,11 @@ public class UF extends QuickUnionUF {
     }
 
     @Override
-    public void union(int p, int q) {
-        int rootP = find(p);
-        int rootQ = find(q);
-        if (rootP == rootQ) return;
-
-        if      (rank[rootP] < rank[rootQ]) parent[rootP] = rootQ;
-        else if (rank[rootP] > rank[rootQ]) parent[rootQ] = rootP;
-        else {
-            parent[rootQ] = rootP;
-            rank[rootP]++;
+    public int find(int p) {
+        while (p != parent[p]) {
+            parent[p] = parent[parent[p]];
+            p = parent[p];
         }
-        count--;
+        return p;
     }
 }
