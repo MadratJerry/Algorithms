@@ -48,5 +48,5 @@ The objective of this book is to study a broad variety of important and useful a
 |➖|DoublingRatio.java|doubling ratio|
 |✅|[QuickFindUF.java](1.5%20Union-Find/QuickFindUF.java)|quick find|
 |✅|[QuickUnionUF.java](1.5%20Union-Find/QuickUnionUF.java)|quick union|
-|➖|WeightedQuickUnionUF.java|weighted quick union|
-|➖|UF.java|union-by-rank with path halving|
+|✅|[WeightedQuickUnionUF.java](1.5%20Union-Find/WeightedQuickUnionUF.java)|weighted quick union|
+|✅|[UF.java](1.5%20Union-Find/UF.java)|union-by-rank with path halving|
