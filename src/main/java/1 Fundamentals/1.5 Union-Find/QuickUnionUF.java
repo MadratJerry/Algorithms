@@ -1,6 +1,6 @@
 public class QuickUnionUF implements IUF {
-    private int[] parent;
-    private int   count;
+    int[] parent;
+    int   count;
 
     public QuickUnionUF(int n) {
         count = n;
