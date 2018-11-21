@@ -4,6 +4,7 @@
    - 1.1 [Basic Programming Model](src/main/java/1%20Fundamentals/1.1%20Basic%20Programming%20Model)
    - 1.2 [Data Abstraction](src/main/java/1%20Fundamentals/1.2%20Data%20Abstraction)
    - 1.3 [Bags, Queues, and Stacks](src/main/java/1%20Fundamentals/1.3%20Bags,%20Queues,%20and%20Stacks)
+   - 1.4 [Analysis of Algorithms](src/main/java/1%20Fundamentals/1.4%20Analysis%20of%20Algorithms)
    - 1.5 [Case Study: Union-Find](src/main/java/1%20Fundamentals/1.5%20Union-Find)
 2. [**Sorting**](src/main/java/2%20Sorting)
    - 2.1 [Elementary Sorts](src/main/java/2%20Sorting/2.1%20Elementary%20Sorts)
@@ -15,7 +16,7 @@
    - 3.2 [Binary Search Trees](src/main/java/3%20Searching/3.2%20Binary%20Search%20Trees)
    - 3.3 [Balanced Search Trees](src/main/java/3%20Searching/3.3%20Balanced%20Search%20Trees)
    
-- [Assignments](src/main/java/Assignments)
+- [**Assignments**](src/main/java/Assignments)
    - [8 Puzzle](src/main/java/Assignments/8%20Puzzle)
    - [Collinear Points](src/main/java/Assignments/Collinear%20Points)
    - [Deques and Randomized Queues](src/main/java/Assignments/Deques%20and%20Randomized%20Queues)
