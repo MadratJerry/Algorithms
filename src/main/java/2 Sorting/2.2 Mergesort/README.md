@@ -2,7 +2,7 @@
 
 ## Creative Problems
 
-_10._ **Faster merge.** Implement a version of merge() that copies the second half of a[] to aux[] in decreasing order and then does the merge back to a[]. This change allows you to remove the code to test that each of the halves has been exhausted from the inner loop. Note: the resulting sort is not stable. 
+_2.2.10_ **Faster merge.** Implement a version of merge() that copies the second half of a[] to aux[] in decreasing order and then does the merge back to a[]. This change allows you to remove the code to test that each of the halves has been exhausted from the inner loop. Note: the resulting sort is not stable. 
 
 Solution:
 
@@ -21,7 +21,7 @@ private static void merge(Comparable[] a, int lo, int mid, int hi) {
 } 
 ```
 
-_11._ **Improvements.** Write a program MergeX.java that implements the three improvements to mergesort that are described in the text: add a cutoff from small subarrays, test whether the array is already in order, and avoid the copy by switching arguments in the recursive code. 
+_2.2.11_ **Improvements.** Write a program MergeX.java that implements the three improvements to mergesort that are described in the text: add a cutoff from small subarrays, test whether the array is already in order, and avoid the copy by switching arguments in the recursive code. 
 
 Solution: [MergeX.java](MergeX.java)
 
