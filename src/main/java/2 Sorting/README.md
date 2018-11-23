@@ -16,10 +16,11 @@ In this chapter, we consider several classical sorting methods and an efficient 
 
 |Status|Program|Description|
 |:----:|:-----:|:---------:|
+|✅|[Insertion.java](2.1%20Elementary%20Sorts/Insertion.java)|insertion sort|
 |✅|[InsertionX.java](2.1%20Elementary%20Sorts/InsertionX.java)|insertionsort(optimized)|
 |-|BinaryInsertion.java|binaryinsertionsort|
-|-|Selection.java|selectionsort|
-|-|Shell.java|shellsort|
+|✅|[Selection.java](2.1%20Elementary%20Sorts/Selection.java)|selectionsort|
+|✅|[Shell.java](2.1%20Elementary%20Sorts/Shell.java)|shellsort|
 |-|Merge.java|top-downmergesort|
 |-|MergeBU.java|bottom-upmergesort|
 |✅|[MergeX.java](2.2%20Mergesort/MergeX.java)|optimizedmergesort|
