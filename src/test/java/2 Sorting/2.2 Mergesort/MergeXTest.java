@@ -1,0 +1,1 @@
+class MergeXTest extends SortTest {}
