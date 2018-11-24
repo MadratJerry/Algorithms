@@ -14,7 +14,7 @@ public class Merge extends Sort {
         merge(a, aux, l, mid, r);
     }
 
-    private static void merge(Comparable[] a, Comparable[] aux, int l, int mid, int r) {
+    static void merge(Comparable[] a, Comparable[] aux, int l, int mid, int r) {
         assert isSorted(a, l, mid);
         assert isSorted(a, mid + 1, r);
 

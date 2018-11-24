@@ -22,7 +22,7 @@ In this chapter, we consider several classical sorting methods and an efficient 
 |✅|[Selection.java](2.1%20Elementary%20Sorts/Selection.java)|selectionsort|
 |✅|[Shell.java](2.1%20Elementary%20Sorts/Shell.java)|shellsort|
 |✅|[Merge.java](2.2%20Mergesort/Merge.java)|top-downmergesort|
-|➖|MergeBU.java|bottom-upmergesort|
+|✅|[MergeBU.java](2.2%20Mergesort/MergeBU.java)|bottom-upmergesort|
 |✅|[MergeX.java](2.2%20Mergesort/MergeX.java)|optimizedmergesort|
 |➖|Inversions.java|numberofinversions|
 |➖|Quick.java|quicksort|
