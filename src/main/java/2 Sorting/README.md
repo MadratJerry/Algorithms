@@ -24,7 +24,7 @@ In this chapter, we consider several classical sorting methods and an efficient 
 |✅|[Merge.java](2.2%20Mergesort/Merge.java)|top-downmergesort|
 |✅|[MergeBU.java](2.2%20Mergesort/MergeBU.java)|bottom-upmergesort|
 |✅|[MergeX.java](2.2%20Mergesort/MergeX.java)|optimizedmergesort|
-|➖|Inversions.java|numberofinversions|
+|✅|[Inversions.java](2.2%20Mergesort/Inversions.java)|numberofinversions|
 |➖|Quick.java|quicksort|
 |➖|Quick3way.java|quicksortwith3-waypartitioning|
 |➖|QuickX.java|optimized2-wayquicksort|
