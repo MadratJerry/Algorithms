@@ -1,12 +1,12 @@
 public class Merge extends Sort {
 
-    public static void sort(Comparable[] a) {
-        Comparable[] aux = new Comparable[a.length];
+    public static <Key extends Comparable<Key>> void sort(Key[] a) {
+        Key[] aux = a.clone();
         sort(a, aux, 0, a.length - 1);
         assert isSorted(a);
     }
 
-    private static void sort(Comparable[] a, Comparable[] aux, int l, int r) {
+    private static <Key extends Comparable<Key>> void sort(Key[] a, Key[] aux, int l, int r) {
         if (r <= l) return;
         int mid = l + (r - l) / 2;
         sort(a, aux, l, mid);
@@ -14,7 +14,7 @@ public class Merge extends Sort {
         merge(a, aux, l, mid, r);
     }
 
-    static void merge(Comparable[] a, Comparable[] aux, int l, int mid, int r) {
+    static <Key extends Comparable<Key>> void merge(Key[] a, Key[] aux, int l, int mid, int r) {
         assert isSorted(a, l, mid);
         assert isSorted(a, mid + 1, r);
 

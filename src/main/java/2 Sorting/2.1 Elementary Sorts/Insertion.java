@@ -1,6 +1,6 @@
 public class Insertion extends Sort {
 
-    public static void sort(Comparable[] a) {
+    public static <Key extends Comparable<Key>> void sort(Key[] a) {
         for (int i = 1; i < a.length; i++) {
             for (int j = i; j > 0 && less(a[j], a[j - 1]); j--)
                 exch(a, j, j - 1);

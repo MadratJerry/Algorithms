@@ -1,19 +1,19 @@
 public class MergeX extends Sort {
     private static final int CUTOFF = 7;
 
-    public static void sort(Comparable[] a) {
-        Comparable[] aux = a.clone();
+    public static <Key extends Comparable<Key>> void sort(Key[] a) {
+        Key[] aux = a.clone();
         sort(aux, a, 0, a.length - 1);
     }
 
-    private static void insertionSort(Comparable[] a, int l, int r) {
+    private static <Key extends Comparable<Key>> void insertionSort(Key[] a, int l, int r) {
         for (int i = l + 1; i <= r; i++) {
             for (int j = i; j > l && less(a[j], a[j - 1]); j--)
                 exch(a, j, j - 1);
         }
     }
 
-    private static void sort(Comparable[] src, Comparable[] dst, int l, int r) {
+    private static <Key extends Comparable<Key>> void sort(Key[] src, Key[] dst, int l, int r) {
         if (r <= l + CUTOFF) {
             insertionSort(dst, l, r);
             return;
@@ -31,7 +31,7 @@ public class MergeX extends Sort {
         merge(src, dst, l, mid, r);
     }
 
-    private static void merge(Comparable[] src, Comparable[] dst, int l, int mid, int r) {
+    private static <Key extends Comparable<Key>> void merge(Key[] src, Key[] dst, int l, int mid, int r) {
         assert isSorted(src, l, mid);
         assert isSorted(src, mid + 1, r);
 

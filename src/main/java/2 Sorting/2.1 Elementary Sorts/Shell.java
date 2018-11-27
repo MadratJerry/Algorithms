@@ -1,6 +1,6 @@
 public class Shell extends Sort {
 
-    public static void sort(Comparable[] a) {
+    public static <Key extends Comparable<Key>> void sort(Key[] a) {
         int n = a.length, h = 1;
         while (h < n / 3) h = h * 3 + 1;
         while (h >= 1) {
@@ -15,7 +15,7 @@ public class Shell extends Sort {
         assert isSorted(a);
     }
 
-    private static boolean isHsorted(Comparable[] a, int h) {
+    private static <Key extends Comparable<Key>> boolean isHsorted(Key[] a, int h) {
         for (int i = h; i < a.length; i++)
             if (less(a[i], a[i - h])) return false;
         return true;
