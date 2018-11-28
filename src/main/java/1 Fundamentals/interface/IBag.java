@@ -1,4 +1,4 @@
-public interface IBag<Item> extends Iterable<Item>  {
+public interface IBag<Item> extends Iterable<Item> {
 
     boolean isEmpty();
 

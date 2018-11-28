@@ -62,7 +62,7 @@ public class LinkedQueue<Item> implements IQueue<Item> {
         public boolean hasNext() { return current != null; }
 
         @Override
-        public void remove()     { throw new UnsupportedOperationException(); }
+        public void remove() { throw new UnsupportedOperationException(); }
 
         @Override
         public Item next() {
