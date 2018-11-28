@@ -14,7 +14,7 @@ class InversionsTest {
 
     @RepeatedTest(16)
     void count() {
-        int       size = 1061;
+        int       size = StdRandom.uniform(10000);
         Integer[] a    = new Integer[size];
         Integer[] b    = new Integer[size];
         for (int i = 0; i < size; i++) a[i] = b[i] = StdRandom.uniform(Integer.MAX_VALUE);

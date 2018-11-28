@@ -1,6 +1,5 @@
 import edu.princeton.cs.algs4.StdRandom;
 import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -18,7 +17,7 @@ abstract class SortTest {
         Class<?> classObject = Class.forName(className);
         Method   method      = classObject.getMethod("sort", Comparable[].class);
 
-        int       size = 1061;
+        int       size = StdRandom.uniform(10000);
         Integer[] a    = new Integer[size];
         Integer[] b    = new Integer[size];
         for (int i = 0; i < size; i++) a[i] = b[i] = StdRandom.uniform(Integer.MAX_VALUE);
