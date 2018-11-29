@@ -28,3 +28,7 @@ Solution: [MergeX.java](MergeX.java)
 _2.2.19_ **Inversions.** Develop and implement a linearithmic algorithm [Inversions.java](https://algs4.cs.princeton.edu/22mergesort/Inversions.java.html) for computing the number of inversions in a given array (the number of exchanges that would be performed by insertion sort for that array—see Section 2.1). This quantity is related to the Kendall tau distance; see Section 2.5. 
 
 Solution: [Inversions.java](Inversions.java)
+
+_2.2.20_ **Index sort.** Develop a version of [Merge.java](https://algs4.cs.princeton.edu/22mergesort/Merge.java.html) that does not rearrange the array, but returns an `int[]` perm such that `perm[i]` is the index of the ith smallest entry in the array.
+
+Solution: [Merge.java](Merge.java)
