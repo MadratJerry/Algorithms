@@ -1,0 +1,1 @@
+class QuickTest extends SortTest {}

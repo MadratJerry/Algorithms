@@ -17,22 +17,22 @@ In this chapter, we consider several classical sorting methods and an efficient 
 |Status|Program|Description|
 |:----:|:-----:|:---------:|
 |✅|[Insertion.java](2.1%20Elementary%20Sorts/Insertion.java)|insertion sort|
-|✅|[InsertionX.java](2.1%20Elementary%20Sorts/InsertionX.java)|insertionsort(optimized)|
-|➖|BinaryInsertion.java|binaryinsertionsort|
-|✅|[Selection.java](2.1%20Elementary%20Sorts/Selection.java)|selectionsort|
-|✅|[Shell.java](2.1%20Elementary%20Sorts/Shell.java)|shellsort|
-|✅|[Merge.java](2.2%20Mergesort/Merge.java)|top-downmergesort|
-|✅|[MergeBU.java](2.2%20Mergesort/MergeBU.java)|bottom-upmergesort|
-|✅|[MergeX.java](2.2%20Mergesort/MergeX.java)|optimizedmergesort|
-|✅|[Inversions.java](2.2%20Mergesort/Inversions.java)|numberofinversions|
-|➖|Quick.java|quicksort|
-|➖|Quick3way.java|quicksortwith3-waypartitioning|
-|➖|QuickX.java|optimized2-wayquicksort|
-|➖|QuickBentleyMcIlroy.java|optimized3-wayquicksort|
-|➖|TopM.java|priorityqueueclient|
-|➖|MaxPQ.java|maxheappriorityqueue|
-|➖|MinPQ.java|minheappriorityqueue|
-|➖|IndexMinPQ.java|indexminheappriorityqueue|
-|➖|IndexMaxPQ.java|indexmaxheappriorityqueue|
-|➖|Multiway.java|multiwaymerge|
-|➖|Heap.java|heapsort|
+|✅|[InsertionX.java](2.1%20Elementary%20Sorts/InsertionX.java)|insertion sort(optimized)|
+|➖|BinaryInsertion.java|binary insertion sort|
+|✅|[Selection.java](2.1%20Elementary%20Sorts/Selection.java)|selection sort|
+|✅|[Shell.java](2.1%20Elementary%20Sorts/Shell.java)|shell sort|
+|✅|[Merge.java](2.2%20Mergesort/Merge.java)|top-down merge sort|
+|✅|[MergeBU.java](2.2%20Mergesort/MergeBU.java)|bottom-up merge sort|
+|✅|[MergeX.java](2.2%20Mergesort/MergeX.java)|optimized merge sort|
+|✅|[Inversions.java](2.2%20Mergesort/Inversions.java)|number of inversions|
+|✅|[Quick.java](2.3%20Quicksort/Quick.java)|quick sort|
+|➖|Quick3way.java|quick sort with 3-way partitioning|
+|➖|QuickX.java|optimized 2-way quick sort|
+|➖|QuickBentleyMcIlroy.java|optimized 3-way quick sort|
+|➖|TopM.java|priority queue client|
+|➖|MaxPQ.java|max heap priority queue|
+|➖|MinPQ.java|min heap priority queue|
+|➖|IndexMinPQ.java|index min heap priority queue|
+|➖|IndexMaxPQ.java|index max heap priority queue|
+|➖|Multiway.java|multi way merge|
+|➖|Heap.java|heap sort|
